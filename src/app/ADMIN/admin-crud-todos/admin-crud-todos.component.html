@@ -1,0 +1,85 @@
+<div class="container" [ngClass]="!mode ? 'dark':'light'">
+    <div class="todos">
+        <div class="header">
+            <h1>
+                <i class="fa-solid fa-list-check"></i>
+                TO DOS
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find To-do.." name="search" [(ngModel)]="searchTodo">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="todos-count" >{{ todosCount }} to dos</span>
+            <div class="right">
+                <a class="add-todo" #addTodo>
+                    <button mat-raised-button color="primary" (click)="openAddTodoDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD TO DO</span>
+                    </button>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="title"><div>Title</div></td>
+                        <td class="task"><div>Task</div></td>
+                        <td class="completed"><div>Completed</div></td>
+                        <td class="author"><div>Author</div></td>
+                        <td class="status"><div>Task Status</div></td>
+                        <td class="trashed"><div>Status</div></td>
+                        <td class="created"><div>Date Created</div></td>
+                        <td class="updated"><div>Date Updated</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let todo of todos | filter:searchTodo">
+                        <td class="todo-id"><div>{{ todo.id }}</div></td>
+                        <td class="todo-title"><div>{{ todo.title }}</div></td>
+                        <td class="todo-task">
+                            <div class="dropdown">
+                                <div class="dropdown-btn">
+                                    View Tasks
+                                </div>
+                                <div class="dropdown-content">
+                                    <div class="option" *ngFor="let task of todo.tasks">
+                                        <input type="radio" class="radio" id="task" name="task"/>
+                                        <label for="task">{{ task.title }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="todo-completed"><div>{{ todo.taskCompleted === '' ? 0 : todo.taskCompleted }}</div></td>
+                        <td class="todo-author"><div>{{ todo.author }}</div></td>
+                        <td class="todo-status" *ngIf="todo.statusId === 1"><div>Completed</div></td>
+                        <td class="todo-status" *ngIf="todo.statusId === 2"><div>In Progress</div></td>
+                        <td class="todo-status" *ngIf="todo.statusId === 3"><div>Late</div></td>
+                        <td class="todo-trashed"><div>{{ todo.isArchived === true ? 'Archived':'Active' }}</div></td>
+                        <td class="todo-created"><div>{{ todo.dateCreated }}</div></td>
+                        <td class="todo-updated"><div>{{ todo.dateUpdated }}</div></td>
+                        <td class="todo-edit">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-pen-to-square" (click)="openUpdateTodoDialog(todo)"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="todo-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="removeTodo(todo.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

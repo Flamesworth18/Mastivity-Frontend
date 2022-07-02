@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,AAAA,CACD,OAAO,CAAE,IAAI,CAChB",
+    "sources": [
+        "../src/app/USER/home/home.component.scss"
+    ],
+    "names": [],
+    "file": "home.component.min.css"
+}

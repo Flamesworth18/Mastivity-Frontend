@@ -1,0 +1,165 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
+    <div class="logo-container">
+        <button class="logo" (click)="toggleCollapsed()">M</button>
+        <div class="logo-text" @textFadeInOut *ngIf="collapsed"><b style="color:#fcd900">M</b>astivity</div>
+        <button class="btn-close" @rotate @textFadeInOut *ngIf="collapsed" (click)="closeSidenav()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['dashboard']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-dashboard"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Dashboard</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Dashboard</span>
+            </a>
+        </li>
+        <li class="sidenav-label">
+            <label [ngClass]="collapsed ? 'show':'hide'">Menu</label>
+        </li>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/notes']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-note"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Notes</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Notes</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/to-dos']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bx-list-ul"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">To Dos</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed"  style="white-space: nowrap;">To Dos</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/schedules']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class='sidenav-link-icon bx bxs-calendar-week'></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Schedules</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Schedules</span>
+            </a>
+        </li>
+        <li class="sidenav-label">
+            <label [ngClass]="collapsed ? 'show':'hide'">Data Management</label>
+        </li>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/crud/users']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-user"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Users</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Users</span>
+            </a>
+        </li>
+        <!-- <li class="sidenav-nav-dropdown-button" (click)="showTaskDropDown()">
+            <a class="sidenav-nav-item-dropdown" [ngClass]="showTasks ? 'highlight':'notHighlight'" [routerLink]="['admin/to-dos']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+                <div>
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bx-list-ul"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">To Dos</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">To Dos</span>
+                </div>
+                <i class='sidenav-link-icon bx bx-caret-down' @iconFadeInOut *ngIf="collapsed"></i>
+            </a>
+        </li>
+        <div class="sidenav-nav-dropdown" [ngClass]="showTasks ? 'showTasks':'hideTasks'">
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" [routerLink]="['admin/tasks']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bx-list-ol"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Tasks</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Tasks</span>
+                </a>
+            </li>
+        </div>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/notes']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-note"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Notes</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Notes</span>
+            </a>
+        </li> -->
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/crud/schedules']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-calendar"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Events</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Events</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/crud/programs']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-graduation"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Programs</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Programs</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/crud/subjects']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-book"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Subjects</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Subjects</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item" (click)="hideTaskDropDown()">
+            <a class="sidenav-nav-link" [routerLink]="['admin/crud/students']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-group"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Students</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Students</span>
+            </a>
+        </li>
+        <li class="logout">
+            <a class="sidenav-nav-link" (click)="logoutUser()"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon" [class]="logout.icon"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Logout</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">{{ logout.label }}</span>
+            </a>
+        </li>
+    </ul>
+</div>

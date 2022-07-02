@@ -1,0 +1,79 @@
+<div class="container" [ngClass]="!mode? 'dark':'light'">
+    <div class="programs">
+        <div class="header">
+            <h1>
+                <i class="fa-solid fa-user-graduate"></i>
+                PROGRAMS
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find Program.." name="search" [(ngModel)]="searchProgram">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="programs-count" >{{ programCount }} programs</span>
+            <div class="right">
+                <a class="add-program" #addPrograms>
+                    <button mat-raised-button color="primary" (click)="openAddProgramDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD PROGRAM</span>
+                    </button>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="abbr"><div>Abbreviation</div></td>
+                        <td class="name"><div>Name</div></td>
+                        <td class="subjects"><div>Subjects</div></td>
+                        <td class="semester"><div>Semester</div></td>
+                        <td class="school-year"><div>School Year</div></td>
+                        <td class="department"><div>Department</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let program of programs | filter:searchProgram">
+                        <td class="program-id"><div>{{program.id}}</div></td>
+                        <td class="program-abbr"><div>{{program.programAbbreviation}}</div></td>
+                        <td class="program-name"><div>{{program.programName}}</div></td>
+                        <td class="program-subjects">
+                            <div class="dropdown">
+                                <div class="dropdown-btn">
+                                    View Subjects
+                                </div>
+                                <div class="dropdown-content">
+                                    <div class="option" *ngFor="let subject of program.subjects">
+                                        <input type="radio" class="radio" id="subject" name="subject"/>
+                                        <label for="subject">{{ subject.subjectName }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="program-semester"><div>{{program.semester}}</div></td>
+                        <td class="program-school-year"><div>{{program.schoolYear}}</div></td>
+                        <td class="program-department"><div>{{program.department}}</div></td>
+                        <td class="program-edit">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-pen-to-square" (click)="openUpdateProgramDialog(program)"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="program-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="confirmationDialog(program.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

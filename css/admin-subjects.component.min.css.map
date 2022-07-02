@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../src/app/ADMIN/admin-subjects/admin-subjects.component.scss"
+    ],
+    "names": [],
+    "file": "admin-subjects.component.min.css"
+}

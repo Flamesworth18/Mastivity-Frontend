@@ -1,0 +1,134 @@
+<app-topnav></app-topnav>
+
+<div class="container" [ngClass]="!mode? 'dark':''">
+    <div class="dashboard">
+        <div class="left">
+            <span>Dashboard</span>
+            <div class="link">
+                <label>Home</label>
+                <i class="fa-solid fa-angle-right"></i>
+                <a >Dashboard</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="notification" #btn (click)="openRequestUserDialog()">
+                <i class="fa-solid fa-bell"></i>
+                <div class="notif-count" *ngIf="requestUsers.length > 0">
+                    <span>{{ requestUsers.length }}</span>
+                </div>
+            </div>
+            <div class="time">
+                {{ getFormattedDate() }}
+                <i class="fa-solid fa-calendar-week"></i>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px" class="stat-cards">
+        <mat-card fxFlex="25" style="background: #ef476f">
+            <i class="fa-solid fa-user-group"></i>
+            <div class="data" *ngIf="!(loader._isLoading | async)">
+                <span class="count">{{ users }}</span>
+                <span class="label">Total Users</span>
+            </div>
+        </mat-card>
+        <mat-card fxFlex="25" style="background: #ffd166">
+            <i class="fa-solid fa-eye"></i>
+            <div class="data" *ngIf="!(loader._isLoading | async)">
+                <span class="count">{{ counter.count }}</span>
+                <span class="label">Today's Visitors</span>
+            </div>
+        </mat-card>
+        <mat-card fxFlex="25" style="background: #06d6a0">
+            <i class="fa-solid fa-earth-asia"></i>
+            <div class="data" *ngIf="!(loader._isLoading | async)">
+                <span class="count">{{ counter.overallCount }}</span>
+                <span class="label">Overall Visitors</span>
+            </div>
+        </mat-card>
+        <mat-card fxFlex="25" style="background: #118ab2">
+            <i class="fa-solid fa-plug"></i>
+            <div class="data" *ngIf="!(loader._isLoading | async)">
+                <span class="count">{{ counter.onlineCount }}</span>
+                <span class="label">Current Online</span>
+            </div>
+        </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.sm="column" fxLayout.xs="column" fxLayout.md="column" fxLayoutGap="20px" class="model-cards">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" fxLayout.xs="column" class="rows" >
+            <mat-card fxFlex>
+                <div class="icon" style="background: #264653;">
+                    <i class='bx bx-notepad' ></i>
+                </div>
+                <div class="data">
+                    <label>
+                        Notes
+                    </label>
+                    <div *ngIf="!(loader._isLoading | async)">{{ notes }}</div>
+                </div>
+            </mat-card>
+            <mat-card fxFlex>
+                <div class="icon" style="background: #287271;">
+                    <i class='bx bx-list-minus'></i>
+                </div>
+                <div class="data">
+                    <label>
+                        To Dos
+                    </label>
+                    <div *ngIf="!(loader._isLoading | async)">{{ todos }}</div>
+                </div>
+            </mat-card>
+            <mat-card fxFlex>
+                <div class="icon" style="background: #2a9d8f;">
+                    <i class='bx bx-layer'></i>
+                </div>
+                <div class="data">
+                    <label>
+                        Tasks
+                    </label>
+                    <div *ngIf="!(loader._isLoading | async)">{{ tasks }}</div>
+                </div>
+            </mat-card>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" fxLayout.xs="column" class="rows">
+            <mat-card fxFlex>
+                <div class="icon" style="background: #e9c46a;">
+                    <i class='bx bxs-school' ></i>
+                </div>
+                <div class="data">
+                    <label>
+                        Programs
+                    </label>
+                    <div *ngIf="!(loader._isLoading | async)">{{ programs }}</div>
+                </div>
+            </mat-card>
+            <mat-card fxFlex>
+                <div class="icon" style="background: #f4a261;">
+                    <i class='bx bx-book-open'></i>
+                </div>
+                <div class="data">
+                    <label>
+                        Subjects
+                    </label>
+                    <div *ngIf="!(loader._isLoading | async)">{{ subjects }}</div>
+                </div>
+            </mat-card>
+            <mat-card fxFlex>
+                <div class="icon" style="background: #e76f51;">
+                    <i class='bx bx-group' ></i>
+                </div>
+                <div class="data">
+                    <label>
+                        Students
+                    </label>
+                    <div *ngIf="!(loader._isLoading | async)">{{ students }}</div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px" class="charts">
+        <app-admin-charts class="container" fxFlex></app-admin-charts>
+        <app-admin-area-chart class="container" fxFlex></app-admin-area-chart>
+    </div>
+</div>
+
+<app-footer></app-footer>

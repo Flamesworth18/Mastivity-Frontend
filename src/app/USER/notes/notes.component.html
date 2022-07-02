@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="view-container">
+        <div class="view-header">
+            <i class='bx bx-notepad' ></i>
+            <h1>Notes</h1>
+        </div>
+        <div class="view-content" *ngIf="!(loader._isLoading | async)">
+            <div class="view-settings">
+                <div class="note-count">
+                    <span>{{ noteCount }} notes</span>
+                    <div class="tooltip">
+                        <i class="fa-solid fa-arrow-down-wide-short"></i>
+                        <span class="tooltip-text">Sort</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="noteIsEmpty" class="note-empty">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <span>Click the <b>+ New Note</b> button in the sidebar to get started.</span>
+            </div>
+            <ul *ngIf="!noteIsEmpty">
+                <li *ngFor="let note of notes" (click)="showIcons(note.id)" [ngClass]="note.id === activeNote? 'active':''" (click)="populateForm(note)">
+                    <div class="upper-content">
+                        <div class="title">
+                            <span>{{ note.title }}</span>
+                            <div class="icons" [ngClass]="note.id === activeNote ? 'active':''">
+                                <div class="tooltip">
+                                    <i (click)="confirmationDialog()" class='bx bx-trash' ></i>
+                                    <span class="tooltip-text">Remove</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description">{{ note.description }}</div>
+                    </div>
+                    <div class="lower-content">
+                        <div class="date">{{ note.dateUpdated }}</div>
+                    </div>
+                </li>
+            </ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        </div>
+    </div>
+    <div class="input-container">
+        <form *ngIf="(!noteIsEmpty || addEdit || addEditService) && !(loader._isLoading | async)" #form="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group form-header">
+                <input type="text" name="title" placeholder="Add Title" [(ngModel)]="note.title">
+                <button class="tooltip">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span class="tooltip-text">Save</span>
+                </button>
+            </div>
+            <hr>
+            <div class="form-group">
+                <textarea name="description" id="textarea" cols="30" rows="10" placeholder="Write your description here..." [(ngModel)]="note.description"></textarea>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+.container{
+  max-width: 1300px;
+  min-width: 400px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+
+  .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+  }
+
+  .title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #061701, #fcd900);
+  }
+
+  .content{
+    display: flex;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 400px;
+
+    form{
+      width: 100%;
+      height: 100%;
+      padding-bottom: 1rem;
+
+      .input-area{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+  
+        .input-details{
+          display: flex;
+          flex-direction: column;
+          margin: 20px 20px 12px 0;
+          width: 100%;
+          max-width: 400px;
+    
+          .input-box{
+            margin-bottom: 15px;
+
+            .time{
+              display: flex;
+              align-items: center;
+              flex-direction: row;
+              justify-content: space-evenly;
+
+              span{
+                font-size: 20px;
+                margin-left: 1rem;
+                margin-right: 1rem;
+              }
+            }
+
+            .date{
+              display: flex;
+              align-items: center;
+              flex-direction: row;
+              justify-content: space-evenly;
+
+              span{
+                font-size: 20px;
+                margin-left: 1rem;
+                margin-right: 1rem;
+              }
+            }
+
+            .days-container{
+              display: flex;
+              align-items: center;
+              justify-content: space-evenly;
+              flex-direction: row;
+
+              .days{
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+
+                .fa-square-check{
+                  font-size: 22px;
+                  cursor: pointer;
+                  color: #cbb003;
+                }
+
+                .fa-square{
+                  font-size: 22px;
+                  cursor: pointer;
+                }
+
+                label{
+                  font-size: 16px;
+                  margin-left: .5rem;
+                }
+              }
+            }
+    
+            .details{
+              display: block;
+              font-weight: 500;
+              margin-bottom: 5px;
+              width: 100%;
+            }
+    
+            input{
+              height: 45px;
+              width: 100%;
+              outline: none;
+              font-size: 16px;
+              border-radius: 5px;
+              padding-left: 15px;
+              padding-right: 15px;
+              border: 1px solid #ccc;
+              border-bottom-width: 2px;
+              transition: all 0.3s ease;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+  
+            input:valid,
+            input:active{
+              border-color: #fcd900;
+            }
+          }
+        }
+
+        .student-details{
+          display: flex;
+          flex-direction: column;
+          margin: 20px 0 12px 0;
+          width: 100%;
+          max-width: 500px;
+          max-height: 500px;
+          overflow-y: scroll;
+          overflow-x: hidden;
+
+          .header{
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              margin-bottom: .5rem;
+              width: 400px;
+
+              .btns{
+                display: flex;
+                justify-content: space-evenly;
+                margin-left: .5rem;
+
+                .remove-btn{
+                  background: red;
+                  border-radius: .3rem;
+                  padding: .5rem;
+                  cursor: pointer;
+                  color: #fff;
+                  white-space: nowrap;
+                }
+                .remove-btn:hover{
+                  background: rgb(204, 2, 2);
+                }
+
+                .add-btn{
+                    margin-left: .5rem;
+                    background: #fcd900;
+                    border-radius: .3rem;
+                    padding: .5rem;
+                    cursor: pointer;
+                    color: #fff;
+                    white-space: nowrap;
+                }
+                .add-btn:hover{
+                  background: #cbb003;
+                }
+              }
+  
+              .details{
+                display: block;
+                font-weight: 500;
+              }
+          }
+    
+          input{
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+          }
+           
+          i{
+            position: relative;
+            left: 320px;
+            bottom: 32px;
+            font-size: 22px;
+            cursor: pointer;
+          }
+
+          .fa-square-check{
+            color: #cbb003;
+          }
+
+          .fa-square-minus{
+            color: red;
+          }
+  
+          input:valid,
+          input:active{
+            border-color: #fcd900;
+          }
+        }
+        .student-details::-webkit-scrollbar{
+            width: 0px;
+        }
+      }
+
+      .button{
+        height: 45px;
+        margin: 15px 0;
+
+        input{
+          height: 100%;
+          width: 100%;
+          border-radius: 5px;
+          border: none;
+          color: #fff;
+          font-size: 18px;
+          font-weight: 500;
+          letter-spacing: 1px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background: linear-gradient(135deg, #061701, #fcd900);
+        }
+
+        input:hover{
+          transform: scale(0.99);
+          background: linear-gradient(-135deg, #061701, #fcd900);
+         }
+      }
+    }
+    @media (max-width: 800px) {
+      form .input-area {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .content::-webkit-scrollbar{
+    width: 0px;
+}
+}

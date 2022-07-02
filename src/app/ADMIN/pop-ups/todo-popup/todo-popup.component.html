@@ -1,0 +1,107 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+    <div class="title">
+        <i class='bx bx-list-plus'></i>
+        Add Todo
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="input-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="todo.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Title</span>
+              <input type="text" placeholder="Enter title" required [(ngModel)]="todo.title" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Author</span>
+              <input type="text" placeholder="Enter author" required [(ngModel)]="todo.author" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="radio-box">
+              <span class="details">Status</span>
+              <div class="status">
+                <div class="radio">
+                  <span class="details">Archived</span>
+                  <input type="radio" name="status" value="{{ todo.id !== '' ? todo.isArchived: null }}">
+                </div>
+                <div class="radio">
+                  <span class="details">Active</span>
+                  <input type="radio" name="status" value="{{ todo.id !== '' ? !todo.isArchived: null }}">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="task-details">
+            <div class="header">
+              <span class="details">Task</span>
+              <div class="remove-btn" (click)="removeTask()">Remove Task</div>
+              <div class="add-btn" (click)="addTask()">Add Task</div>
+            </div>
+            <div class="task" *ngFor="let task of tasks; let i = index">
+              <input (click)="currentTask(i)" type="text" placeholder="Enter task" required [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}" />
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Add" (click)="addEditTodo()">
+        </div>
+      </form>
+    </div>
+</div>
+
+<!-- EDIT -->
+<div class="container" *ngIf="!data.add">
+  <div class="title">
+      <i class='bx bx-list-plus'></i>
+      Update Todo
+  </div>
+  <div class="content">
+    <form>
+      <div class="input-area">
+        <div class="input-details">
+          <div class="input-box">
+            <span class="details">Id</span>
+            <input type="text" disabled [(ngModel)]="todo.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Title</span>
+            <input type="text" placeholder="Enter title" required [(ngModel)]="todo.title" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Author</span>
+            <input type="text" placeholder="Enter author" required [(ngModel)]="todo.author" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="radio-box">
+            <span class="details">Status</span>
+            <div class="status">
+              <div class="radio">
+                <span class="details">Archived</span>
+                <input type="radio" name="status" value="{{ todo.id !== '' ? todo.isArchived: null }}">
+              </div>
+              <div class="radio">
+                <span class="details">Active</span>
+                <input type="radio" name="status" value="{{ todo.id !== '' ? !todo.isArchived: null }}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="task-details">
+          <div class="header">
+            <span class="details">Task</span>
+            <div class="remove-btn" (click)="removeTask()">Remove Task</div>
+            <div class="add-btn" (click)="addTask()">Add Task</div>
+          </div>
+          <div class="task" *ngFor="let task of tasks; let i = index">
+            <input (click)="currentTask(i)" type="text" placeholder="Enter task" required [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}" />
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <input type="submit" value="Update" (click)="addEditTodo()">
+      </div>
+    </form>
+  </div>
+</div>

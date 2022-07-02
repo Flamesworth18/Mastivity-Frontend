@@ -1,0 +1,12 @@
+<app-sidenav *ngIf="isUserValid"
+    (onToggleSidenav)="onToggleSidenav($event)"
+ ></app-sidenav>
+
+<app-admin-sidenav *ngIf="isAdminValid"
+    (onToggleSidenav)="onToggleSidenav($event)"
+></app-admin-sidenav>
+
+<app-body
+    [collapsed] = 'isSidenavCollapsed' 
+    [screenWidth] = 'screenWidth'
+></app-body>

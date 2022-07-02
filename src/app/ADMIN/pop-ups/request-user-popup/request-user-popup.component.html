@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="title">
+        <span class="notif">Notifications</span>
+        <span class="count">{{ requestUsers.length }}</span>
+    </div>
+    <div class="wrapper" *ngFor="let user of requestUsers, let i = index">
+        <mat-card>
+            <div class="info">
+                <div class="name-date">
+                    <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+                    <span>{{ user.userCreated }}</span>
+                </div>
+                <p>{{ user.email }}</p>
+            </div>
+            <div class="verify">
+                <button class="confirm" mat-raised-button color="primary" (click)="confirm(user, i)">Verify</button>
+                <button class="delete" mat-raised-button color="warn" (click)="confirmationDialog(user, i)">Delete</button>
+            </div>
+        </mat-card>
+    </div>
+</div>

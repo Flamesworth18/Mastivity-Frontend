@@ -1,0 +1,339 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+
+    .subjects{
+        width: 100%;
+        padding: 1.5rem;
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+            margin-bottom: 2rem;
+            font-size: 900;
+
+            h1{
+                display: flex;
+                align-items: center;
+                font-weight: 900;
+                margin-top: 1rem;
+
+                i{
+                    color: #fbdf00;
+                    font-size: 32px;
+                    margin-right: .5rem;
+                }
+            }
+        
+            .search-bar{ 
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                border: solid 2px #2f342d;
+                border-radius: .3rem;
+                padding: .5rem;
+        
+                input[type=text] {
+                    font-size: 17px;
+                    outline: none;
+                    border: none;
+                    background: transparent;
+                    padding-right: 1rem;
+                }
+            }
+            .search-bar:focus-within{
+                border: solid 2px #fcd900
+            }
+            
+        }
+    }
+
+    .settings{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-weight: 500;
+
+        .subjects-count{
+            display: flex;
+            white-space: nowrap;
+        }
+    
+        .right{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+    
+            .add-subject{
+                display: flex;
+                align-items: center;
+                margin-right: 1rem;
+                color: #828100;
+                cursor: pointer;
+                
+                i{
+                    margin-right: .5rem;
+                }
+            }
+            .add-subject:hover{
+                color: #fcd900;
+            }
+    
+            i{
+                font-size: 25px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .content{
+        height: 580px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        table{
+            border-collapse: collapse;
+            width: 100%;
+            
+            thead{
+                top: 0;
+                z-index: 2;
+                position: sticky;
+                font-weight: 700;
+            }
+
+            td{
+                text-align: left;
+                padding: 8px;
+            }
+
+            .id>div, .name>div, .code>div, .time>div, .date>div, .day>div, .department>div, .students>div,
+            .subject-id>div, .subject-name>div, .subject-code>div, .subject-code>div, .subject-time>div, .subject-date>div, .subject-day>div, .subject-department>div, .subject-students>div{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+    
+            .table-header{
+                font-size: 12px;
+                text-transform: uppercase;
+
+                .id>div, .code>div, .day>div, .department>div{
+                    width: 80px;
+                }
+                .time>div{
+                    width: 150px;
+                }
+                .date>div{
+                    width: 180px;
+                }
+                .edit>div, .remove>div{
+                    width: 30px;
+                }
+
+                .students>div{
+                    width: 180px;
+                }
+
+                .name>div{
+                    width: 150px;
+                }
+            }
+    
+            .table-body{
+
+                .subject-id>div, .subject-code>div, .subject-day>div, .subject-department>div{
+                    width: 80px;
+                }
+                .subject-time>div{
+                    width: 150px;
+                }
+                .subject-date>div{
+                    width: 180px;
+                }
+                .subject-edit>div, .subject-remove>div{
+                    width: 30px;
+                }
+
+                .subject-students>div{
+                    width: 180px;
+                }
+
+                .subject-name>div{
+                    width: 150px;
+                }
+
+                .subject-students{
+                    .dropdown {
+                        display: flex;
+                        flex-direction: column;
+
+                        .option .radio {
+                          display: none;
+                        }
+                        .dropdown-btn {
+                            border-radius: 8px;
+                            color: #525861;
+                            position: relative;
+                            cursor: pointer;
+                          
+                            order: 0;
+                        }
+
+                        .dropdown-btn:hover{
+                            color: #828100
+                        }
+                        
+                        .dropdown-btn::after {
+                            content: "";
+                            background: url("/assets/images/arrow-down.svg");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                          
+                            position: absolute;
+                            height: 100%;
+                            width: 10px;
+                            right: 10px;
+                            top: 5px;
+                          
+                            transition: all 0.4s;
+                        }
+
+                        .dropdown-content{
+                            display: none;
+                            position: absolute;
+                            background-color: #f9f9f9;
+                            width: 195px;
+                            margin-top: 20px;
+                            max-height: 250px;
+                            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                            z-index: 1;
+                            overflow-y: scroll;
+                            overflow-x: hidden;
+
+                            .option{
+                                color: black;
+                                padding: 12px 16px;
+                                display: block;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                        }
+                        .dropdown-content::-webkit-scrollbar{
+                            width: 3px;
+                        }
+                    
+                        .dropdown-content::-webkit-scrollbar-track{
+                            -webkit-box-shadow: inset 0 0 10px #525c01;
+                        }
+                    
+                        .dropdown-content::-webkit-scrollbar-thumb{
+                            background: #fadd00;
+                        }
+                    }
+                    .dropdown:hover .dropdown-content{
+                        display: block;
+                    }
+                }
+
+                .subject-edit, .subject-remove{
+                    transition: all .5s ease;
+                    
+                    .fa-pen-to-square{
+                        width: 30px;
+                        height: 30px;
+                        background: #fbdf00;
+                        color: #fff;
+                        border-radius: .625rem;
+                    }
+                    .fa-pen-to-square:hover{
+                        color: #fbdf00;
+                        background: #fff;
+                    }
+
+                    .fa-trash-can{
+                        width: 30px;
+                        height: 30px;
+                        background: red;
+                        color: #fff;
+                        border-radius: .625rem;
+                    }
+
+                    .fa-trash-can:hover{
+                        color: red;
+                        background: #fff;
+                    }
+
+                    i{
+                        font-size: 16px;
+                        text-align: center;
+                        line-height: 30px;
+                        vertical-align: middle;
+                        cursor: pointer;
+                    }
+
+                    .tooltip {
+                        position: relative;
+                        display: inline-block;
+
+                        .tooltip-text {
+                            font-size: 10px;
+                            width: 50px;
+                            background-color: black;
+                            color: #fff;
+                            text-align: center;
+                            border-radius: 6px;
+                            padding: 5px 0;
+                            position: absolute;
+                            z-index: 1;
+                            top: 100%;
+                            left: 50%;
+                            margin-left: -25px;
+                            
+                            /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+                            opacity: 0;
+                            transition: opacity 1s;
+                        }
+                        .tooltip-text::after{
+                            content: "";
+                            position: absolute;
+                            bottom: 100%;
+                            left: 50%;
+                            margin-left: -5px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: transparent transparent black transparent;
+                        }
+                    }
+                    .tooltip:hover .tooltip-text {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+
+                }
+
+                td{
+                    padding-top: 12px ;
+                    padding-bottom: 12px ;
+                }
+            }
+    
+            .table-body:hover{
+                background: #e0d3c1;
+            }
+            .table-body.active{
+                background: #b7ac9d;
+            }
+        }
+    }
+    .content::-webkit-scrollbar{
+        width: 0px;
+    }
+}

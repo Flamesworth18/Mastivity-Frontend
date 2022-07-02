@@ -1,0 +1,411 @@
+.container{
+    margin-top: -220px;
+    padding: 30px;
+    width: 100%;
+
+    .box-card-1, .box-card-2, .box-card-3{
+        margin-bottom: 1rem;
+        height: 400px;
+        width: 100%;
+        min-height: 320px;
+        background: #092401;
+        border-radius: 30px;
+        border: 3px solid rgba(249,221,0,1);
+        
+    }
+
+    .box-card-1{
+
+        .note-wrapper{
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            .title{
+                position: sticky;
+                left: .6rem
+            }
+        
+            span{
+                padding-top: 10px ;
+                padding-left: 10px;
+                margin-left: 10px;
+                color: #fff;
+            }
+
+            .note-container{
+                display: flex;
+                margin-bottom: 1rem;
+                margin-right: 75rem;
+
+                .notes{
+                    margin: 10px;
+                    background: #828100;
+                    max-width: 200px;
+                    min-width: 200px;
+                    max-height: 300px;
+                    min-height: 300px;
+                    border-radius: 25px;
+                    color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+        
+                    input[type = "text"]{
+                        width: 125px;
+                        padding-top: 10px ;
+                        padding-left: 10px;
+                        margin-left: 10px;
+                        color: #fff;
+                        background-color: transparent;
+                        outline: none;
+                        resize: none;
+                        border: none;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+        
+                    textarea{
+                        color: rgba(255,255,255, .8);
+                        padding: 1rem;
+                        width: 100%;
+                        height: 300px;
+                        margin-bottom: 1.2rem;
+                        font-size: 12px;
+                        background-color: transparent;
+                        outline: none;
+                        resize: none;
+                        border: none;
+                    }
+            
+                    textarea::-webkit-scrollbar{
+                        width: 5px;
+                    }
+            
+                    textarea::-webkit-scrollbar-track{
+                        -webkit-box-shadow: inset 0 0 10px #525c01;
+                    }
+            
+                    textarea::-webkit-scrollbar-thumb{
+                        background: #fadd00;
+                    }  
+                }
+                .notes:hover{
+                    background: #606000;
+                }
+
+                .default{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .icon{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 80px;
+                        height: 80px;
+                        background: #213701;
+                        border-radius: 50%;
+                        border: 2px solid #fadd00;
+                        transition: all .5s ease;
+                        cursor: pointer;
+                    }
+
+                    .icon:hover{
+                        transform: scale(1.1);
+                        background: #525c01;
+                    }
+                }
+            }
+        }
+        .note-wrapper::-webkit-scrollbar{
+            height: 10px;
+            margin-bottom: 5rem;
+        }
+    
+        .note-wrapper::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 10px #525c01;
+            border-radius: 1rem;
+            position: relative;
+            bottom: 100px;
+        }
+    
+        .note-wrapper::-webkit-scrollbar-thumb{
+            background: #fadd00;
+            border-radius: 1rem;
+        } 
+    }
+    
+
+    .box-card-2{
+        padding: 15px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        span{
+            margin-left: 10px;
+        }
+
+        textarea{
+            color: #5C6274;
+            width: 100%;
+            height: 500px;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 18px;
+            background-color: transparent;
+            outline: none;
+            resize: none;
+            border: none;
+        }
+
+        textarea::-webkit-scrollbar{
+            width: 5px;
+        }
+
+        textarea::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 10px #525c01;
+        }
+
+        textarea::-webkit-scrollbar-thumb{
+            background: #fadd00;
+        }                 
+        
+    }
+
+    .box-card-3{
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        .todos-events{
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            .todo-wrapper{
+                width: 100%;
+                overflow-x: auto;
+                overflow-y: hidden;
+    
+                .title{
+                    position: sticky;
+                    left: .6rem
+                }
+            
+                span{
+                    padding-top: 10px ;
+                    padding-left: 10px;
+                    margin-left: 10px;
+                    font-weight: 500;
+                }
+    
+                .todo-container{
+                    display: flex;
+                    margin-bottom: 1rem;
+                    margin-right: 75rem;
+    
+                    .todo{
+                        margin: 10px;
+                        background: #828100;
+                        max-width: 150px;
+                        min-width: 150px;
+                        max-height: 300px;
+                        min-height: 300px;
+                        border-radius: 25px;
+                        display: flex;
+                        flex-direction: column;
+
+                        .text{
+                            padding-top: 10px ;
+                            padding-left: 10px;
+                            margin-left: 10px;
+                        }
+            
+                        input[type = "text"]{
+                            width: 115px;
+                            color: #fff;
+                            background-color: transparent;
+                            outline: none;
+                            resize: none;
+                            border: none;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+        
+                        .tasks-container{
+                            color: rgba(255,255,255, .8);
+                            padding: 1rem;
+                            width: 100%;
+                            height: 300px;
+                            margin-bottom: 1.2rem;
+                            margin-left: 1rem;
+                            font-size: 12px;
+                            background-color: transparent;
+                            display: flex;
+                            align-items: center;
+                            flex-direction: column;
+
+                            .tasks{
+                                display: flex;
+                                align-items: center;
+                                flex-direction: row;
+                                margin-bottom: .5rem;
+
+                                .checkbox-label{
+                                    margin-left: .5rem;
+                                }
+
+                                [type=checkbox]{
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                    color: #fadd00;
+                                    vertical-align: middle;
+                                    -webkit-appearance: none;
+                                    background: none;
+                                    border: 0;
+                                    outline: 0;
+                                    flex-grow: 0;
+                                    border-radius: 50%;
+                                    background-color: #FFFFFF;
+                                    transition: background 300ms;
+                                    cursor: pointer;
+                                }
+            
+                                /* Pseudo element for check styling */
+            
+                                [type=checkbox]::before {
+                                    content: "";
+                                    color: transparent;
+                                    display: block;
+                                    width: inherit;
+                                    height: inherit;
+                                    border-radius: inherit;
+                                    border: 0;
+                                    background-color: transparent;
+                                    background-size: contain;
+                                    box-shadow: inset 0 0 0 1px #CCD3D8;
+                                }
+            
+                                /* Checked */
+            
+                                [type=checkbox]:checked {
+                                    background-color: currentcolor;
+                                }
+                                  
+                                [type=checkbox]:checked::before {
+                                    box-shadow: none;
+                                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+                                }
+            
+                                /* Disabled */
+            
+                                [type=checkbox]:disabled {
+                                    background-color: #CCD3D8;
+                                    opacity: 0.84;
+                                    cursor: not-allowed;
+                                }
+            
+                                /* IE */
+            
+                                [type=checkbox]::-ms-check {
+                                    content: "";
+                                    color: transparent;
+                                    display: block;
+                                    width: inherit;
+                                    height: inherit;
+                                    border-radius: inherit;
+                                    border: 0;
+                                    background-color: transparent;
+                                    background-size: contain;
+                                    box-shadow: inset 0 0 0 1px #CCD3D8;
+                                }
+                                  
+                                [type=checkbox]:checked::-ms-check {
+                                    box-shadow: none;
+                                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+                                }
+                            }
+                        }
+                
+                        .tasks-container::-webkit-scrollbar{
+                            width: 5px;
+                        }
+                
+                        .tasks-container::-webkit-scrollbar-track{
+                            -webkit-box-shadow: inset 0 0 10px #525c01;
+                        }
+                
+                        .tasks-container::-webkit-scrollbar-thumb{
+                            background: #fadd00;
+                        } 
+ 
+                    }
+                    .todo:hover{
+                        background: #606000;
+                    }
+    
+                    .default{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+    
+                        .icon{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 80px;
+                            height: 80px;
+                            background: #213701;
+                            border-radius: 50%;
+                            border: 2px solid #fadd00;
+                            transition: all .5s ease;
+                            cursor: pointer;
+                        }
+    
+                        .icon:hover{
+                            transform: scale(1.1);
+                            background: #525c01;
+                        }
+                    }
+                }
+            }
+            .todo-wrapper::-webkit-scrollbar{
+                height: 10px;
+                margin-bottom: 5rem;
+            }
+        
+            .todo-wrapper::-webkit-scrollbar-track{
+                -webkit-box-shadow: inset 0 0 10px #525c01;
+                border-radius: 1rem;
+                position: relative;
+                bottom: 100px;
+            }
+        
+            .todo-wrapper::-webkit-scrollbar-thumb{
+                background: #fadd00;
+                border-radius: 1rem;
+            }
+            
+            .events-container{
+                height: 350px;
+                width: 100%;
+                overflow-y: auto;
+
+                full-calendar{
+                    font-size: 12px;
+                }
+            }
+
+            .events-container::-webkit-scrollbar{
+                width: 0px;
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../src/app/USER/trash/trash.component.scss"
+    ],
+    "names": [],
+    "file": "trash.component.min.css"
+}

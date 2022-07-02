@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="subject-container">
+        <div class="subjects" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="30px">
+            <mat-card *ngFor="let s of userSubjects, let i = index" (click)="selectedSubject(s.students)" class="subjects" fxFlex="25" [ngStyle]="{'background': generateColor(i)}">
+                <i class='bx bxs-book-alt'></i>
+                <div class="data">
+                    <h3>{{ s.subjectName }}</h3>
+                    <span class="count">{{ s.students.length }}</span>
+                    <span class="label">STUDENTS</span>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="students-status" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px">
+        <mat-card fxFlex class="no-grade">
+            <h2>No Grade</h2>
+            <ul *ngFor="let s of noGradeStudents, let i = index">
+                <li>
+                    <span>{{ i+1 }}</span>
+                    {{ s.fullName }}
+                    <i class="fa-solid fa-marker" (click)="changeStatus(s)"></i>
+                </li>
+            </ul>
+        </mat-card>
+        <mat-card fxFlex class="passed">
+            <h2>Passed</h2>
+            <ul *ngFor="let s of passedStudents, let i = index">
+                <li>
+                    <span>{{ i+1 }}</span>
+                    {{ s.fullName }}
+                    <i class="fa-solid fa-marker" (click)="changeStatus(s)"></i>
+                </li>
+            </ul>
+        </mat-card>
+        <mat-card fxFlex class="inc">
+            <h2>INCOMPLETE</h2>
+            <ul *ngFor="let s of incompleteStudents, let i = index">
+                <li>
+                    <span>{{ i+1 }}</span>
+                    {{ s.fullName }}
+                    <i class="fa-solid fa-marker" (click)="changeStatus(s)"></i>
+                </li>
+            </ul>
+        </mat-card>
+        <mat-card fxFlex class="failed">
+            <h2>FAILED</h2>
+            <ul *ngFor="let s of failedStudents, let i = index">
+                <li>
+                    <span>{{ i+1 }}</span>
+                    {{ s.fullName }}
+                    <i class="fa-solid fa-marker" (click)="changeStatus(s)"></i>
+                </li>
+            </ul>
+        </mat-card>
+    </div>
+</div>

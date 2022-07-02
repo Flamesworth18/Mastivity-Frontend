@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../src/app/ADMIN/admin-schedules/admin-schedules.component.scss"
+    ],
+    "names": [],
+    "file": "admin-schedules.component.min.css"
+}

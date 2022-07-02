@@ -1,0 +1,159 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
+    <div class="logo-container">
+        <button class="logo" (click)="toggleCollapsed()">M</button>
+        <div class="logo-text" @textFadeInOut *ngIf="collapsed"><b style="color: #fcd900">M</b>astivity</div>
+        <button class="btn-close" @rotate @textFadeInOut *ngIf="collapsed" (click)="closeSidenav()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item">
+            <div class="dropdown" #toggleDropdown (click)="dropdownCollapsed()">
+                <label>
+                    <div class="tooltip">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Add New</span>
+                    </div>
+                    <span @textFadeInOut *ngIf="collapsed" class="dropdown-text">New</span>
+                    <span @iconFadeInOut class="fas fa-caret-down" *ngIf="collapsed"></span>
+                </label>
+                <ul class="menu" [ngClass]="showDropdown ? 'dropdown-content-show':''">
+                    <li (click)="createTodo()">
+                        <a>
+                            <i class='bx bx-task' ></i>
+                            To Do
+                        </a>
+                    </li>
+                    <li (click)="createNote()">
+                        <a>
+                            <i class='bx bxs-edit bx-flip-horizontal' ></i>
+                            Note
+                        </a>
+                    </li>
+                    <li (click)="createSchedule()">
+                        <a>
+                            <i class='bx bx-calendar-plus' ></i>
+                            Schedule
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" [routerLink]="['home']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-home"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Home</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Home</span>
+            </a>
+        </li>
+        <li class="sidenav-label">
+            <label [ngClass]="collapsed ? 'show':'hide'">Menu</label>
+        </li>
+        <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" [routerLink]="['to-dos']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bx-list-ul"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">To Dos</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">To Dos</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" [routerLink]="['notes']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-note"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Notes</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Notes</span>
+            </a>
+        </li>
+        <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" [routerLink]="['schedules']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-calendar"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Schedules</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Schedules</span>
+            </a>
+        </li>
+        <li class="sidenav-label">
+            <label [ngClass]="collapsed ? 'show':'hide'">User Management</label>
+        </li>
+        <li class="sidenav-nav-dropdown-button">
+            <a class="sidenav-nav-item-dropdown" (click)="showNavDropdown()" [ngClass]="showRecords ? 'highlight':'notHighlight'">
+                <div class="tooltip">
+                    <i class="sidenav-link-icon bx bxs-folder-open"></i>
+                    <span class="tooltiptext" *ngIf="!collapsed">Records</span>
+                </div>
+                <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Records</span>
+                <i class='sidenav-link-icon bx bx-caret-down' @iconFadeInOut *ngIf="collapsed"></i>
+            </a>
+        </li>
+        <div class="sidenav-nav-dropdown" [ngClass]="showRecords ? 'showRecords':'hideRecords'">
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" [routerLink]="['programs']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-graduation"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Programs</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Programs</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item"><a class="sidenav-nav-link" [routerLink]="['subjects']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-book"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Subjects</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Subjects</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" [routerLink]="['students']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-group"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Students</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Students</span>
+                </a>
+            </li>  
+        </div>
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" [routerLink]="['trash']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon bx bxs-trash-alt"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Trash</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">Trash</span>
+            </a>
+        </li> -->
+        <li class="logout">
+            <a class="sidenav-nav-link" (click)="logoutUser()"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                    <div class="tooltip">
+                        <i class="sidenav-link-icon" [class]="logout.icon"></i>
+                        <span class="tooltiptext" *ngIf="!collapsed">Logout</span>
+                    </div>
+                    <span class="sidenav-link-text" @textFadeInOut *ngIf="collapsed">{{ logout.label }}</span>
+            </a>
+        </li>
+    </ul>
+</div>

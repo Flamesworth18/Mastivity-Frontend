@@ -1,0 +1,113 @@
+<div class="container" [ngClass]="!mode? 'dark':'light'">
+    <div class="view-container">
+        <div class="programs">
+            <div class="view-header">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h1>Programs</h1>
+            </div>
+            <div class="view-content"  *ngIf="!(loader._isLoading | async)">
+                <div class="view-settings">
+                    <div class="program-count">
+                        <div class="settings">
+                            <span>{{ programs.length - userPrograms.length }} programs</span>
+                            <div class="tooltip">
+                                <i class="fa-solid fa-arrow-down-wide-short"></i>
+                                <span class="tooltip-text">Sort</span>
+                            </div>
+                        </div>
+                        <form class="search-bar" tabindex="0">
+                            <input type="text" placeholder="Find Programs.." name="search" [(ngModel)]="prog">
+                            <i class="fa fa-search"></i>
+                        </form>
+                    </div>
+                </div>
+                <ul>
+                    <div *ngFor="let program of programs | filter:prog">
+                        <li *ngIf="hideProgram(program) | async" (click)="selectedProgramSubjects(program)" (click)="getProgramName(program)" (click)="showIcons(program.id)" [ngClass]="program.id === activeProgram? 'active':''">
+                            <div class="list-content">
+                                <div class="title-container">
+                                    <span>{{ program.programName }}</span>
+                                    <div class="icons" [ngClass]="program.id === activeProgram ? 'active':''">
+                                        <div class="tooltip">
+                                            <i class='bx bxs-book' (click)="openAddSubjectDialog(program.subjects)"></i>
+                                            <span class="tooltip-text">Subject</span>
+                                        </div>
+                                        <div class="tooltip">
+                                            <i class='bx bxs-bookmark-plus' (click)="addProgram()"></i>
+                                            <span class="tooltip-text">Add</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="department">{{ program.department }}</div>
+                            </div>
+                            <div class="date-container">
+                                <span class="days">{{ program.semester }}</span>
+                                <div class="time">{{ program.schoolYear }}</div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="user-programs">
+        <div class="header">
+            <h2>Programs</h2>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find Your Programs.." name="search"  [(ngModel)]="userProg">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings"  *ngIf="!(loader._isLoading | async)">
+            <span class="programs-count">{{ userProgramCount }} programs</span>
+            <div class="right">
+                <a class="update-subject" (click)="openUpdateSubjectDialog()">
+                    <i class='bx bx-edit' ></i>
+                    <span>Update Subject</span>
+                </a>
+                <a class="remove-program" (click)="confirmationDialog()">
+                    <i class='bx bx-message-square-x'></i>
+                    <span>Remove Program</span>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table [ngClass]="!mode ? 'dark':'light'">
+                <thead [ngClass]="!mode ? 'dark':'light'">
+                    <tr class="table-header">
+                        <td class="abbr"><div>Abbreviation</div></td>
+                        <td class="name"><div>Name</div></td>
+                        <td class="subjects"><div>Subjects</div></td>
+                        <td class="semester"><div>Semester</div></td>
+                        <td class="school-year"><div>School Year</div></td>
+                        <td class="department"><div>Department</div></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-body" *ngFor="let program of userPrograms | filter:userProg" (click)="getActiveUserProgram(program)" [ngClass]="program === activeUserProgram? 'active':''">
+                        <td class="program-abbr" *ngIf="!(loader._isLoading | async)"><div>{{program.programAbbreviation}}</div></td>
+                        <td class="program-name" *ngIf="!(loader._isLoading | async)"><div>{{program.programName}}</div></td>
+                        <td class="program-subjects" *ngIf="!(loader._isLoading | async)">
+                            <div class="dropdown" *ngIf="!(loader._isLoading | async)">
+                                <div class="dropdown-btn">
+                                    View Subjects
+                                </div>
+                                <div class="dropdown-content">
+                                    <div class="option" *ngFor="let subject of program.subjects">
+                                        <input type="radio" class="radio" id="subject" name="subject"/>
+                                        <label for="subject">{{ subject.subjectName }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="program-semester" *ngIf="!(loader._isLoading | async)"><div>{{program.semester}}</div></td>
+                        <td class="program-school-year" *ngIf="!(loader._isLoading | async)"><div>{{program.schoolYear}}</div></td>
+                        <td class="program-department" *ngIf="!(loader._isLoading | async)"><div>{{program.department}}</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

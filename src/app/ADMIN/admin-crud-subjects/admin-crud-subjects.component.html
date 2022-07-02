@@ -1,0 +1,81 @@
+<div class="container" [ngClass]="!mode ? 'dark':'light'">
+    <div class="subjects">
+        <div class="header">
+            <h1>
+                <i class="fa-solid fa-book"></i>
+                SUBJECTS
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find Subject.." name="search" [(ngModel)]="searchSubject">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="subjects-count" >{{ subjectCount }} subjects</span>
+            <div class="right">
+                <a class="add-subject" #subjectBtn>
+                    <button mat-raised-button color="primary" (click)="openAddSubjectDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD SUBJECT</span>
+                    </button>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="code"><div>Subject Code</div></td>
+                        <td class="name"><div>Subject Name</div></td>
+                        <td class="students"><div>Students</div></td>
+                        <td class="time"><div>Time</div></td>
+                        <td class="day"><div>Day</div></td>
+                        <td class="date"><div>School Year</div></td>
+                        <td class="department"><div>Department</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let subject of subjects | filter:searchSubject">
+                        <td class="subject-id"><div>{{ subject.id }}</div></td>
+                        <td class="subject-code"><div>{{ subject.subjectCode }}</div></td>
+                        <td class="subject-name"><div>{{ subject.subjectName }}</div></td>
+                        <td class="subject-students">
+                            <div class="dropdown">
+                                <div class="dropdown-btn">
+                                    View students
+                                </div>
+                                <div class="dropdown-content">
+                                    <div class="option" *ngFor="let student of subject.students">
+                                        <input type="radio" class="radio" id="students" name="students"/>
+                                        <label for="students">{{ student.fullName }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="subject-time"><div>{{ subject.startingTimeView }} - {{ subject.endingTimeView }}</div></td>
+                        <td class="subject-day"><div>{{ subject.daysView }}</div></td>
+                        <td class="subject-date"><div>{{ subject.startingDate }} - {{ subject.endingDate }}</div></td>
+                        <td class="subject-department"><div>{{ subject.department }}</div></td>
+                        <td class="subject-edit">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-pen-to-square" (click)="openUpdateSubjectDialog(subject)"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="subject-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="confirmationDialog(subject.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

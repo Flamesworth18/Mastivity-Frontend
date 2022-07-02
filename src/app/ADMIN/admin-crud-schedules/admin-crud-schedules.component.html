@@ -1,0 +1,67 @@
+<div class="container" [ngClass]="!mode ? 'dark':'light'">
+    <div class="schedules">
+        <div class="header">
+            <h1>
+                <i class="fa-solid fa-calendar-week"></i>
+                SCHEDULES
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find Schedule.." name="search" [(ngModel)]="searchSchedule">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="schedules-count" >{{schedules.length}} schedules</span>
+            <div class="right">
+                <a class="add-schedule" #addSchedule>
+                    <button mat-raised-button color="primary" (click)="openAddScheduleDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD SCHEDULE</span>
+                    </button>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="title"><div>Title</div></td>
+                        <td class="date"><div>Date/Time</div></td>
+                        <td class="color"><div>Color</div></td>
+                        <td class="author"><div>Author</div></td>
+                        <td class="created"><div>Date Created</div></td>
+                        <td class="updated"><div>Date Updated</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let schedule of schedules | filter:searchSchedule">
+                        <td class="schedule-id"><div>{{ schedule.id }}</div></td>
+                        <td class="schedule-title"><div>{{ schedule.title }}</div></td>
+                        <td class="schedule-date"><div>{{ schedule.date }}</div></td>
+                        <td class="schedule-color"><div>{{ schedule.color }}</div></td>
+                        <td class="schedule-author"><div>{{ schedule.author }}</div></td>
+                        <td class="schedule-created"><div>{{ schedule.dateCreated }}</div></td>
+                        <td class="schedule-updated"><div>{{ schedule.dateUpdated }}</div></td>
+                        <td class="schedule-edit">
+                            <div class="tooltip" (click)="openUpdateScheduleDialog(schedule)">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="schedule-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="confirmationDialog(schedule.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

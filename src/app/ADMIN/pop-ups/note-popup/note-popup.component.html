@@ -1,0 +1,99 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+  <div class="title">
+    <i class="fa-solid fa-file-circle-plus"></i>
+    Add Note
+  </div>
+  <div class="content">
+    <form>
+      <div class="input-area">
+        <div class="input-details">
+          <div class="input-box">
+            <span class="details">Id</span>
+            <input type="text" disabled [(ngModel)]="note.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Title</span>
+            <input type="text" placeholder="Enter title" required [(ngModel)]="note.title" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Author</span>
+            <input type="text" placeholder="Enter author" required [(ngModel)]="note.author" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="radio-box">
+            <span class="details">Status</span>
+            <div class="status">
+              <div class="radio">
+                <span class="details">Archived</span>
+                <input type="radio" name="status" value="{{ note.id !== '' ? note.isArchived: null }}">
+              </div>
+              <div class="radio">
+                <span class="details">Active</span>
+                <input type="radio" name="status" value="{{ note.id !== '' ? !note.isArchived: null }}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="textarea-details">
+          <div class="textarea-box">
+            <span class="details">Description</span>
+            <textarea type="text" placeholder="Enter description" required [(ngModel)]="note.description" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <input type="submit" value="Add" (click)="addEditNote()">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- EDIT -->
+<div class="container" *ngIf="!data.add">
+  <div class="title">
+    <i class="fa-solid fa-file-circle-plus"></i>
+    Update Note
+  </div>
+  <div class="content">
+    <form>
+      <div class="input-area">
+        <div class="input-details">
+          <div class="input-box">
+            <span class="details">Id</span>
+            <input type="text" disabled [(ngModel)]="note.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Title</span>
+            <input type="text" placeholder="Enter title" required [(ngModel)]="note.title" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Author</span>
+            <input type="text" placeholder="Enter author" required [(ngModel)]="note.author" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="radio-box">
+            <span class="details">Status</span>
+            <div class="status">
+              <div class="radio">
+                <span class="details">Archived</span>
+                <input type="radio" name="status" value="{{ note.id !== '' ? note.isArchived: null }}">
+              </div>
+              <div class="radio">
+                <span class="details">Active</span>
+                <input type="radio" name="status" value="{{ note.id !== '' ? !note.isArchived: null }}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="textarea-details">
+          <div class="textarea-box">
+            <span class="details">Description</span>
+            <textarea type="text" placeholder="Enter description" required [(ngModel)]="note.description" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <input type="submit" value="Update" (click)="addEditNote()">
+      </div>
+    </form>
+  </div>
+</div>

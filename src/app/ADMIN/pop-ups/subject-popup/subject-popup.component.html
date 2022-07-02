@@ -1,0 +1,212 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+    <div class="title">
+      <i class="fa-solid fa-graduation-cap"></i>
+        Add Subject
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="input-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="subject.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Subject Code</span>
+              <input type="text" placeholder="Enter subject code" required [(ngModel)]="subject.subjectCode" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Subject Name</span>
+              <input type="text" placeholder="Enter subject name" required [(ngModel)]="subject.subjectName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Time</span>
+              <div class="time">
+                <input type="time" placeholder="Enter subject starting time" required [(ngModel)]="subject.startingTime" [ngModelOptions]="{standalone: true}">
+                <span>-</span>
+                <input type="time" placeholder="Enter subject ending time" required [(ngModel)]="subject.endingTime" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Days</span>
+              <div class="days-container">
+                <div class="monday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onMonday()" *ngIf="!subject.onMonday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onMonday()" *ngIf="subject.onMonday"></i></span>
+                  </div>
+                  <label>M</label>
+                </div>
+                <div class="tuesday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onTuesday()" *ngIf="!subject.onTuesday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onTuesday()" *ngIf="subject.onTuesday"></i></span>
+                  </div>
+                  <label>T</label>
+                </div>
+                <div class="wednesday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onWednesday()" *ngIf="!subject.onWednesday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onWednesday()" *ngIf="subject.onWednesday"></i></span>
+                  </div>
+                  <label>W</label>
+                </div>
+                <div class="thursday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onThursday()" *ngIf="!subject.onThursday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onThursday()" *ngIf="subject.onThursday"></i></span>
+                  </div>
+                  <label>Th</label>
+                </div>
+                <div class="friday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onFriday()" *ngIf="!subject.onFriday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onFriday()" *ngIf="subject.onFriday"></i></span>
+                  </div>
+                  <label>F</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Department</span>
+              <input type="text" placeholder="Enter subject department" required [(ngModel)]="subject.department" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">School Year</span>
+              <div class="date">
+                <input type="date" placeholder="Enter subject starting time" required [(ngModel)]="subject.startingDate" [ngModelOptions]="{standalone: true}">
+                <span>-</span>
+                <input type="date" placeholder="Enter subject ending Departmentequired" [(ngModel)]="subject.endingDate" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+          <div class="student-details">
+            <div class="header">
+              <span class="details">Students</span>
+              <!-- <div class="btns">
+                <div class="remove-btn" (click)="removeStudent()">Remove Student</div>
+                <div class="add-btn" (click)="addStudent()">Add Student</div>
+              </div> -->
+            </div>
+            <div class="student" *ngFor="let student of students; let i = index">
+              <!-- <input type="text" placeholder="Enter student" required [(ngModel)]="student.fullName" [ngModelOptions]="{standalone: true}"/> -->
+              <input (click)="selectedStudent(i)" type="text" disabled="" required [(ngModel)]="student.fullName" [ngModelOptions]="{standalone: true}"/>
+              <i class="fa-solid fa-square-check" (click)="addStudent(student)" *ngIf="!hasStudent(student)"></i>
+              <i class="fa-solid fa-square-minus" (click)="removeStudent(student)" *ngIf="hasStudent(student)"></i>
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Add" (click)="addEditSubject()">
+        </div>
+      </form>
+    </div>
+</div>
+
+<!-- EDIT -->
+<div class="container" *ngIf="!data.add">
+  <div class="title">
+    <i class="fa-solid fa-graduation-cap"></i>
+      Update Subject
+  </div>
+  <div class="content">
+    <form>
+      <div class="input-area">
+        <div class="input-details">
+          <div class="input-box">
+            <span class="details">Id</span>
+            <input type="text" disabled [(ngModel)]="subject.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Subject Code</span>
+            <input type="text" placeholder="Enter subject code" required [(ngModel)]="subject.subjectCode" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Subject Name</span>
+            <input type="text" placeholder="Enter subject name" required [(ngModel)]="subject.subjectName" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Time</span>
+            <div class="time">
+              <input type="time" placeholder="Enter subject starting time" required [(ngModel)]="subject.startingTime" [ngModelOptions]="{standalone: true}">
+              <span>-</span>
+              <input type="time" placeholder="Enter subject ending time" required [(ngModel)]="subject.endingTime" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="details">Days</span>
+              <div class="days-container">
+                <div class="monday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onMonday()" *ngIf="!subject.onMonday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onMonday()" *ngIf="subject.onMonday"></i></span>
+                  </div>
+                  <label>M</label>
+                </div>
+                <div class="tuesday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onTuesday()" *ngIf="!subject.onTuesday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onTuesday()" *ngIf="subject.onTuesday"></i></span>
+                  </div>
+                  <label>T</label>
+                </div>
+                <div class="wednesday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onWednesday()" *ngIf="!subject.onWednesday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onWednesday()" *ngIf="subject.onWednesday"></i></span>
+                  </div>
+                  <label>W</label>
+                </div>
+                <div class="thursday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onThursday()" *ngIf="!subject.onThursday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onThursday()" *ngIf="subject.onThursday"></i></span>
+                  </div>
+                  <label>Th</label>
+                </div>
+                <div class="friday days">
+                  <div class="checkbox">
+                    <span class="unchecked"><i class="fa-regular fa-square" (click)="onFriday()" *ngIf="!subject.onFriday"></i></span>
+                    <span class="checked"><i class="fa-solid fa-square-check" (click)="onFriday()" *ngIf="subject.onFriday"></i></span>
+                  </div>
+                  <label>F</label>
+                </div>
+              </div>
+          </div>
+          <div class="input-box">
+            <span class="details">Department</span>
+            <input type="text" placeholder="Enter subject department" required [(ngModel)]="subject.department" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">School Year</span>
+            <div class="date">
+              <input type="date" placeholder="Enter subject starting time" required [(ngModel)]="subject.startingDate" [ngModelOptions]="{standalone: true}">
+              <span>-</span>
+              <input type="date" placeholder="Enter subject ending Departmentequired" [(ngModel)]="subject.endingDate" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="student-details">
+          <div class="header">
+            <span class="details">Students</span>
+            <!-- <div class="btns">
+              <div class="remove-btn" (click)="removeStudent()">Remove Student</div>
+              <div class="add-btn" (click)="addStudent()">Add Student</div>
+            </div> -->
+          </div>
+          <div class="student" *ngFor="let student of students; let i = index">
+            <!-- <input type="text" placeholder="Enter student" required [(ngModel)]="student.fullName" [ngModelOptions]="{standalone: true}"/> -->
+            <input (click)="selectedStudent(i)" type="text" disabled="" required [(ngModel)]="student.fullName" [ngModelOptions]="{standalone: true}"/>
+            <i class="fa-solid fa-square-check" (click)="addStudent(student)" *ngIf="!hasStudent(student)"></i>
+            <i class="fa-solid fa-square-minus" (click)="removeStudent(student)" *ngIf="hasStudent(student)"></i>
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <input type="submit" value="Update" (click)="addEditSubject()">
+      </div>
+    </form>
+  </div>
+</div>
+

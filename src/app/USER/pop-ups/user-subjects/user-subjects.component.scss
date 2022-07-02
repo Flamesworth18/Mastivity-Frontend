@@ -1,0 +1,116 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+
+    .table-container{
+        width: 400px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 300px;
+        margin: 10px;
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin: 15px;
+
+            tr:nth-child(even) {
+                background-color: #FAEBD7;
+            }
+        
+            td{
+                text-align: left;
+                padding: 8px;
+
+                i{
+                    font-size: 20px;
+                    margin-right: .5rem;
+                }
+            }
+        
+            thead{
+                top: 0px;
+                z-index: 2;
+                position: sticky;
+                font-weight: 700;
+                text-transform: uppercase;
+                background: #edc48f;
+                padding: 15px
+            }
+        
+            tbody{
+    
+                .fa-square-minus{
+                    color: red;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+        
+                .fa-square-plus{
+                    color: #fbdf00;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+        
+                .fa-square-plus:hover{
+                    color: #998700;
+                }
+    
+                .fa-square-minus:hover{
+                    color: rgb(175, 56, 56);
+                }
+                
+                .tooltip{
+                    position: relative;
+        
+                    .tooltip-text{
+                        font-size: 8px;
+                        visibility: hidden;
+                        width: 40px;
+                        background-color: black;
+                        color: #fff;
+                        text-align: center;
+                        border-radius: 6px;
+                        padding: 5px 0;
+                        position: absolute;
+                        z-index: 1;
+                        top: 85%;
+                        left: -2%;
+                        overflow: visible;
+                    }
+        
+                    .tooltip-text::after{
+                        content: "";
+                        position: absolute;
+                        bottom: 100%;
+                        left: 50%;
+                        margin-left: -5px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: transparent transparent black transparent;
+                    }
+                }
+        
+                .tooltip:hover .tooltip-text{
+                    visibility: visible;
+                }
+            }
+            
+        }
+        
+    }
+    .table-container::-webkit-scrollbar{
+        width: 0;
+    }
+
+    button{
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width:990px) {
+    .container { flex-wrap: wrap;  }
+    .item:first-child { flex-basis: 100%; }
+}

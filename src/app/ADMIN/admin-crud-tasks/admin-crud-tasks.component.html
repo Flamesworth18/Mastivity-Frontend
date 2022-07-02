@@ -1,0 +1,67 @@
+<div class="container" [ngClass]="!mode ? 'dark':'light'">
+    <div class="tasks">
+        <div class="header">
+            <h1>
+                <i class="fa-solid fa-list-check"></i>
+                TASKS
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find Note.." name="search" [(ngModel)]="searchTask">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="tasks-count" >{{tasks.length}} tasks</span>
+            <div class="right">
+                <a class="add-task" #taskBtn>
+                    <button mat-raised-button color="primary" (click)="openAddTaskDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD TASK</span>
+                    </button>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="title"><div>Title</div></td>
+                        <td class="author"><div>Author</div></td>
+                        <td class="complete"><div>Complete</div></td>
+                        <td class="status"><div>Status</div></td>
+                        <td class="created"><div>Date Created</div></td>
+                        <td class="updated"><div>Date Updated</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let task of tasks | filter:searchTask">
+                        <td class="task-id"><div>{{ task.id }}</div></td>
+                        <td class="task-title"><div>{{ task.title }}</div></td>
+                        <td class="task-author"><div>{{ task.author }}</div></td>
+                        <td class="task-complete"><div>{{ task.isCompleted }}</div></td>
+                        <td class="task-status"><div>{{ task.status }}</div></td>
+                        <td class="task-created"><div>{{ task.dateCreated }}</div></td>
+                        <td class="task-updated"><div>{{ task.dateUpdated }}</div></td>
+                        <td class="task-edit">
+                            <div class="tooltip" (click)="openUpdateTaskDialog(task)">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="task-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="removeTask(task.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

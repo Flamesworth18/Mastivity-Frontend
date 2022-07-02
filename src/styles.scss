@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "./assets/highcharts.css";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Define the stop colors */
+#gradient-0 stop {
+	stop-color: #506ef9;
+}
+#gradient-0 stop[offset="0"] {
+	stop-opacity: 0.25;
+}
+#gradient-0 stop[offset="1"] {
+	stop-opacity: 0;
+}
+
+/* Apply the gradients */
+// .highcharts-plot-background {
+// 	fill: url(#gradient-1);
+// }
+.highcharts-color-0 {
+  fill: #506ef9;
+  stroke: #506ef9;
+}
+.highcharts-color-0 .highcharts-area {
+	fill-opacity: 1;
+	fill: url(#gradient-0);
+}

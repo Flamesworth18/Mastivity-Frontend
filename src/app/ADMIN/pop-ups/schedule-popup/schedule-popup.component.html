@@ -1,0 +1,85 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+    <div class="title">
+        <i class="fa-solid fa-calendar-plus"></i>
+        Add Schedule
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="first-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="schedule.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Title</span>
+              <input type="text" placeholder="Enter title" required [(ngModel)]="schedule.title" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Author</span>
+              <input type="text" placeholder="Enter author" required [(ngModel)]="schedule.author" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="second-details">
+            <div class="input-box">
+                <span class="details">Date</span>
+                <input type="date" placeholder="Enter date" required [(ngModel)]="schedule.date" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">Color</span>
+                <input type="text" placeholder="Enter color" required [(ngModel)]="schedule.color" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Add" (click)="addEditSchedule()">
+        </div>
+      </form>
+    </div>
+</div>
+
+<!-- UPDATE -->
+<div class="container" *ngIf="!data.add">
+    <div class="title">
+        <i class="fa-solid fa-calendar-plus"></i>
+        Update Schedule
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="first-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="schedule.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Title</span>
+              <input type="text" placeholder="Enter title" required [(ngModel)]="schedule.title" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Author</span>
+              <input type="text" placeholder="Enter author" required [(ngModel)]="schedule.author" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="second-details">
+            <div class="input-box">
+                <span class="details">Date</span>
+                <input type="date" placeholder="Enter date" required [(ngModel)]="schedule.date" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">Color</span>
+                <input type="text" placeholder="Enter color" required [(ngModel)]="schedule.color" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Date Created</span>
+              <input type="text" placeholder="Enter date created" disabled required [(ngModel)]="schedule.dateCreated" [ngModelOptions]="{standalone: true}">
+          </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Update" (click)="addEditSchedule()">
+        </div>
+      </form>
+    </div>
+</div>

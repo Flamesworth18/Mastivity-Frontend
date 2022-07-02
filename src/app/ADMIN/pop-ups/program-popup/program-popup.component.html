@@ -1,0 +1,115 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+    <div class="title">
+      <i class="fa-solid fa-graduation-cap"></i>
+        Add Program
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="input-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="program.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Abbreviation</span>
+              <input type="text" placeholder="Enter program abbreviation" required [(ngModel)]="program.programAbbreviation" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Name</span>
+              <input type="text" placeholder="Enter program name" required [(ngModel)]="program.programName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">Semester</span>
+                <input type="text" placeholder="Enter semester" required [(ngModel)]="program.semester" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">School Year</span>
+                <input type="text" placeholder="Enter school year" required [(ngModel)]="program.schoolYear" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">Department</span>
+                <input type="text" placeholder="Enter department" required [(ngModel)]="program.department" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="subject-details">
+            <div class="header">
+              <span class="details">Subjects</span>
+              <!-- <div class="btns">
+                <div class="remove-btn" (click)="removeSubject()">Remove Subject</div>
+                <div class="add-btn" (click)="addSubject()">Add Subject</div>
+              </div> -->
+            </div>
+            <div class="subject" *ngFor="let subject of subjects; let i = index">
+              <!-- <input type="text" (click)="currentSubject(i)" placeholder="Enter subject" required [(ngModel)]="subject.subjectName" [ngModelOptions]="{standalone: true}"/> -->
+              <input (click)="selectedSubject(i)" type="text" disabled="" required [(ngModel)]="subject.subjectName" [ngModelOptions]="{standalone: true}"/>
+              <i class="fa-solid fa-square-check" (click)="addSubject(subject)" *ngIf="!hasSubject(subject)"></i>
+              <i class="fa-solid fa-square-minus" (click)="removeSubject(subject)" *ngIf="hasSubject(subject)"></i>
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Add" (click)="addEditProgram()">
+        </div>
+      </form>
+    </div>
+</div>
+
+<!-- EDIT -->
+<div class="container" *ngIf="!data.add">
+    <div class="title">
+      <i class="fa-solid fa-graduation-cap"></i>
+        Update Program
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="input-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="program.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Abbreviation</span>
+              <input type="text" placeholder="Enter program abbreviation" required [(ngModel)]="program.programAbbreviation" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Name</span>
+              <input type="text" placeholder="Enter program name" required [(ngModel)]="program.programName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">Semester</span>
+                <input type="text" placeholder="Enter semester" required [(ngModel)]="program.semester" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">School Year</span>
+                <input type="text" placeholder="Enter school year" required [(ngModel)]="program.schoolYear" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">Department</span>
+                <input type="text" placeholder="Enter department" required [(ngModel)]="program.department" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="subject-details">
+            <div class="header">
+              <span class="details">Subject</span>
+              <!-- <div class="btns">
+                <div class="remove-btn" (click)="removeSubject()">Remove Subject</div>
+                <div class="add-btn" (click)="addSubject()">Add Subject</div>
+              </div> -->
+            </div>
+            <div class="subject" *ngFor="let subject of subjects; let i = index">
+              <!-- <input type="text" (click)="currentSubject(i)" placeholder="Enter subject" required [(ngModel)]="subject.subjectName" [ngModelOptions]="{standalone: true}"/> -->
+              <input (click)="selectedSubject(i)" type="text" disabled="" required [(ngModel)]="subject.subjectName" [ngModelOptions]="{standalone: true}"/>
+              <i class="fa-solid fa-square-check" (click)="addSubject(subject)" *ngIf="!hasSubject(subject)"></i>
+              <i class="fa-solid fa-square-minus" (click)="removeSubject(subject)" *ngIf="hasSubject(subject)"></i>
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Update" (click)="addEditProgram()">
+        </div>
+      </form>
+    </div>
+</div>

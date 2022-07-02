@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="wrapper">
+        <h2>Registration</h2>
+        <form [formGroup]="signUpForm" (ngSubmit)="registerSubmitted()">
+          <div class="input-box">
+            <input class="input-text" id="firstname" type="text" formControlName="firstname" placeholder="Enter your first name" maxlength="16" required>
+            <div class="error" *ngIf="FirstName.errors?.['required'] && (FirstName.dirty)">
+                First name is required
+            </div>
+          </div>
+          <div class="input-box">
+            <input class="input-text" id="lastname" type="text" formControlName="lastname" placeholder="Enter your last name" maxlength="16" required>
+            <div class="error" *ngIf="LastName.errors?.['required'] && (LastName.dirty)">
+                Last name is required
+            </div>
+          </div>
+          <div class="input-box">
+            <input class="input-text" id="email" type="text" formControlName="email" placeholder="Enter your email" required>
+            <div class="error" *ngIf="Email.errors?.['required'] && (Email.dirty)">
+                Email is required
+            </div>
+            <div class="error" *ngIf="Email.errors?.['email'] && (Email.dirty)">
+                Email is Invalid
+            </div>
+          </div>
+          <div class="input-box">
+            <input class="input-text" id="username" type="text" formControlName="username" placeholder="Enter Username" maxlength="16" required>
+            <div class="error" *ngIf="Username.errors?.['required'] && (Username.dirty)">
+                Username is required
+            </div>
+            <div class="error" *ngIf="Username.errors?.['minlength'] && (Username.dirty)">
+                Username should be at least 6 characters
+            </div>
+          </div>
+          <div class="input-box">
+            <input class="input-text" id="password" type="password" formControlName="password" placeholder="Enter password" maxlength="16" required>
+            <div class="error" *ngIf="Password.errors?.['required'] && (Password.dirty)">
+                Password is required
+            </div>
+            <div class="error" *ngIf="Password.errors?.['minlength'] && (Password.dirty)">
+                Password should be at least 6 characters
+            </div>
+          </div>
+          <div class="input-box">
+            <input class="input-text" id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm password" maxlength="16" required>
+            <div class="error" *ngIf="ConfirmPassword.errors?.['required'] && (ConfirmPassword.dirty)">
+                Confirm Password is required
+            </div>
+            <div class="error" *ngIf="ConfirmPassword.errors?.['minlength'] && (ConfirmPassword.dirty)">
+                Confirm Password should be at least 6 characters
+            </div>
+            <div class="error" *ngIf="confirmPassword() && (ConfirmPassword.dirty)">
+                Confirm Password and Password must match!
+          </div>
+          </div>
+          <div class="input-box button">
+            <input type="Submit" value="Register Now" [disabled]="signUpForm.invalid">
+          </div>
+          <div class="text">
+            <h3>Already have an account? <a [routerLink]="['/login']" routerLinkActive="active">Login now</a></h3>
+          </div>
+        </form>
+      </div>
+</div>

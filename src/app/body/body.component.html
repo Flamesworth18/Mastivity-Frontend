@@ -1,0 +1,6 @@
+<div *ngIf="loader._isLoading | async" class="loader-container" [ngClass]="getLoaderClass()">
+    <mat-spinner style="top:50%; left: 50%"></mat-spinner>
+</div>
+<div class="body" [ngClass]="getBodyClass()">
+        <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,123 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+  <div class="title">
+    <i class="fa-solid fa-file-circle-plus"></i>
+    Add User
+  </div>
+  <div class="content">
+    <form>
+      <div class="input-area">
+        <div class="first-details">
+          <div class="input-box">
+            <span class="details">Id</span>
+            <input type="text" disabled [(ngModel)]="subUser.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <input type="text" placeholder="Enter first name" required [(ngModel)]="subUser.firstName" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input type="text" placeholder="Enter last name" required [(ngModel)]="subUser.lastName" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+              <span class="details">Username</span>
+              <input type="text" placeholder="Enter username" required [(ngModel)]="subUser.userName" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="second-details">
+          <div class="input-box">
+              <span class="details">Password</span>
+              <input type="text" placeholder="Enter password" required [(ngModel)]="subUser.password" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="wrapper input-box" (click)="selectRole()" [ngClass]="select? 'active':''">
+            <span class="details">Role</span>
+            <input type="text" placeholder="Select status" disabled value="{{ role.name === ''? user.role: role.name }}">
+            <i class="fa-solid fa-angle-down"></i>
+            <div class="content">
+              <ul class="options" *ngFor="let r of data.roles">
+                <li class="isSelected" (click)="selectedRole(r)">{{ r.name }}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="wrapper input-box" (click)="selectVerification()" [ngClass]="selectVerify? 'active':''">
+            <span class="details">Verify User</span>
+            <input type="text" placeholder="Select status" disabled value="{{ user.isVerify ? 'Yes': 'No' }}">
+            <i class="fa-solid fa-angle-down"></i>
+            <div class="content">
+              <ul class="options">
+                <li class="isSelected" (click)="VerifyUser()">Yes</li>
+              </ul>
+              <ul class="options">
+                <li class="isSelected" (click)="NotVerifyUser()">No</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <input type="submit" value="Add" (click)="addUser()">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- EDIT  -->
+<div class="container" *ngIf="!data.add">
+    <div class="title">
+      <i class="fa-solid fa-file-circle-plus"></i>
+      Update User
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="first-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="user.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">First Name</span>
+              <input type="text" placeholder="Enter first name" required [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Last Name</span>
+              <input type="text" placeholder="Enter last name" required [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+                <span class="details">Username</span>
+                <input type="text" placeholder="Enter username" required [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="second-details">
+            <div class="wrapper input-box" (click)="selectRole()" [ngClass]="select? 'active':''">
+              <span class="details">Role</span>
+              <input type="text" placeholder="Select status" disabled value="{{ role.name === ''? user.role: role.name }}">
+              <i class="fa-solid fa-angle-down"></i>
+              <div class="content">
+                <ul class="options" *ngFor="let r of data.roles">
+                  <li class="isSelected" (click)="selectedRole(r)">{{ r.name }}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="wrapper input-box" (click)="selectVerification()" [ngClass]="selectVerify? 'active':''">
+              <span class="details">Verify User</span>
+              <input type="text" placeholder="Select status" disabled value="{{ user.isVerify ? 'Yes': 'No' }}">
+              <i class="fa-solid fa-angle-down"></i>
+              <div class="content">
+                <ul class="options">
+                  <li class="isSelected" (click)="VerifyUser()">Yes</li>
+                </ul>
+                <ul class="options">
+                  <li class="isSelected" (click)="NotVerifyUser()">No</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Update" (click)="editUser()">
+        </div>
+      </form>
+    </div>
+</div>

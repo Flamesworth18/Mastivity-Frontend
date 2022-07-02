@@ -1,0 +1,101 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+    <div class="title">
+      <i class="fa-solid fa-user-pen"></i>
+      Add Student
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="first-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="student.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Full Name</span>
+              <input type="text" placeholder="Enter full name" required [(ngModel)]="student.fullName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Year Level</span>
+              <input type="text" placeholder="Enter year level" required [(ngModel)]="student.yearLevel" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Program</span>
+              <input type="text" placeholder="Enter program" required [(ngModel)]="student.program" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Department</span>
+              <input type="text" placeholder="Enter department" required [(ngModel)]="student.department" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="second-details">
+            <div class="wrapper input-box" (click)="selectStatus()" [ngClass]="select? 'active':''">
+              <span class="details">Status</span>
+              <input type="text" placeholder="Select status" disabled value="{{ status.status === ''? student.status : status.status }}">
+              <i class="fa-solid fa-angle-down"></i>
+              <div class="content">
+                <ul class="options" *ngFor="let s of data.statuses">
+                  <li class="isSelected" (click)="selectedStatus(s)">{{ s.status }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+        <div class="button">
+          <input type="submit" value="Add" (click)="addEditStudent()">
+        </div>
+      </form>
+    </div>
+</div>
+
+<!-- EDIT -->
+<div class="container" *ngIf="!data.add">
+  <div class="title">
+    <i class="fa-solid fa-user-pen"></i>
+    Update Student
+  </div>
+  <div class="content">
+    <form>
+      <div class="input-area">
+        <div class="first-details">
+          <div class="input-box">
+            <span class="details">Id</span>
+            <input type="text" disabled [(ngModel)]="student.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input type="text" placeholder="Enter full name" required [(ngModel)]="student.fullName" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Year Level</span>
+            <input type="text" placeholder="Enter year level" required [(ngModel)]="student.yearLevel" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Program</span>
+            <input type="text" placeholder="Enter program" required [(ngModel)]="student.program" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Department</span>
+            <input type="text" placeholder="Enter department" required [(ngModel)]="student.department" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="second-details">
+          <div class="wrapper input-box" (click)="selectStatus()" [ngClass]="select? 'active':''">
+            <span class="details">Status</span>
+            <input type="text" placeholder="Select status" disabled value="{{ status.status === ''? student.status: status.status }}">
+            <i class="fa-solid fa-angle-down"></i>
+            <div class="content">
+              <ul class="options" *ngFor="let s of data.statuses">
+                <li class="isSelected" (click)="selectedStatus(s)">{{ s.status }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+      <div class="button">
+        <input type="submit" value="Update" (click)="addEditStudent()">
+      </div>
+    </form>
+  </div>
+</div>

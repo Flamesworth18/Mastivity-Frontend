@@ -1,0 +1,112 @@
+<!-- ADD -->
+<div class="container" *ngIf="data.add">
+    <div class="title">
+      <i class="fa-solid fa-bars-progress"></i>
+      Add Task
+    </div>
+    <div class="content">
+      <form>
+        <div class="input-area">
+          <div class="first-details">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text" disabled [(ngModel)]="task.id" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Title</span>
+              <input type="text" placeholder="Enter title" required [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="input-box">
+              <span class="details">Author</span>
+              <input type="text" placeholder="Enter author" required [(ngModel)]="task.author" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="radio-box">
+              <span class="details">Completed</span>
+              <div class="status">
+                <div class="radio">
+                  <span class="details">True</span>
+                  <input type="radio" name="status" value="{{ task.id !== '' ? task.isCompleted: null }}">
+                </div>
+                <div class="radio">
+                  <span class="details">False</span>
+                  <input type="radio" name="status" value="{{ task.id !== '' ? !task.isCompleted: null }}">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="second-details">
+            <div class="wrapper input-box" (click)="selectStatus()" [ngClass]="select? 'active':''">
+                <span class="details">Status</span>
+                <input type="text" placeholder="Select status" disabled value="{{ status.statusName === ''? task.status : status.statusName }}">
+                <i class="fa-solid fa-angle-down"></i>
+                <div class="content">
+                  <ul class="options" *ngFor="let s of data.statuses">
+                    <li class="isSelected" (click)="selectedStatus(s)">{{ s.statusName }}</li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Add" (click)="addEditTask()">
+        </div>
+      </form>
+    </div>
+</div>
+
+
+<!-- EDIT -->
+<div class="container" *ngIf="!data.add">
+  <div class="title">
+    <i class="fa-solid fa-bars-progress"></i>
+    Update Task
+  </div>
+  <div class="content">
+    <form>
+      <div class="input-area">
+        <div class="first-details">
+          <div class="input-box">
+            <span class="details">Id</span>
+            <input type="text" disabled [(ngModel)]="task.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Title</span>
+            <input type="text" placeholder="Enter title" required [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-box">
+            <span class="details">Author</span>
+            <input type="text" placeholder="Enter author" required [(ngModel)]="task.author" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="radio-box">
+            <span class="details">Completed</span>
+            <div class="status">
+              <div class="radio">
+                <span class="details">True</span>
+                <input type="radio" name="status" value="{{ task.id !== '' ? task.isCompleted ? true : null: null }}">
+              </div>
+              <div class="radio">
+                <span class="details">False</span>
+                <input type="radio" name="status" value="{{ task.id !== '' ? !task.isCompleted? true : null : null }}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="second-details">
+          <div class="wrapper input-box" (click)="selectStatus()" [ngClass]="select? 'active':''">
+              <span class="details">Status</span>
+              <input type="text" placeholder="Select status" disabled value="{{ status.statusName === ''? task.status : status.statusName }}">
+              <i class="fa-solid fa-angle-down"></i>
+              <div class="content">
+                <ul class="options" *ngFor="let s of data.statuses">
+                  <li class="isSelected" (click)="selectedStatus(s)">{{ s.statusName }}</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="button">
+        <input type="submit" value="Update" (click)="addEditTask()">
+      </div>
+    </form>
+  </div>
+</div>

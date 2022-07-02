@@ -1,0 +1,114 @@
+.topnav{
+    z-index: 1;
+    width: 100%;
+    height: 4rem;
+    background: transparent;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+
+
+    header{
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 30px;
+
+
+        .topnav-logo{
+            display: flex;
+            align-items: center;
+            color: #fcd900;
+            font-size: 36px;
+            font-weight: 900;
+            text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+            img{
+                width: 50px;
+                min-width: 50px;
+                margin-right: .5rem;
+            }
+            
+        }
+    
+        .greetings{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+    
+            .topnav-greetings{
+                color: #fff;
+                font-weight: 500;
+                font-size: 15px;
+                text-shadow: 1px 1px black;
+                margin-right: 1rem;
+            }
+        
+            .topnav-user{
+                font-size: 30px;
+                cursor: pointer;
+                white-space: nowrap;
+
+                .tooltip{
+                    position: relative;
+                    display: inline-block;
+
+                    .tooltip-text{
+                        font-size: 8px;
+                        visibility: hidden;
+                        width: 40px;
+                        background-color: black;
+                        color: #fff;
+                        text-align: center;
+                        border-radius: 6px;
+                        padding: 5px 0;
+                        position: absolute;
+                        z-index: 1;
+                        top: 115%;
+                        left: 50%;
+                        margin-left: -23px;
+                        overflow: visible;
+                    }
+
+                    .tooltip-text::after{
+                        content: "";
+                        position: absolute;
+                        bottom: 100%;
+                        left: 50%;
+                        margin-left: -3px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: transparent transparent black transparent;
+                    }
+                }
+
+                .tooltip:hover .tooltip-text{
+                    visibility: visible;
+                }
+            }
+        
+            .topnav-user:hover{
+                color: #fcd900;
+            }
+        }
+    }
+
+    /* The image used */
+    background-image: url("/assets/images/background.jpg");
+
+    /* Set a specific height */
+    min-height: 300px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

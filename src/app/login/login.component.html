@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="login-container">
+        <h1>Welcome to <b>Mastivity</b></h1>
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmitted()">
+            <div class="input-field">
+                <input type="text" id="username" formControlName="username" maxlength="16" required>
+                <span></span>
+                <label>Username</label>
+                <div class="username-error" *ngIf="Username.errors?.['required'] && (Username.dirty)">
+                    Username is required
+                </div>
+                <div class="username-error" *ngIf="Username.errors?.['minlength'] && (Username.dirty)">
+                    Username should be at least 6 characters
+                </div>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" formControlName="password" maxlength="16" required>
+                <span></span>
+                <label>Password</label>
+                <div class="password-error" *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">
+                    Password is required
+                </div>
+                <div class="password-error" *ngIf="Password.errors?.['minlength'] && (Password.dirty || Password.touched)">
+                    Password should be at least 6 characters
+                </div>
+            </div>
+            <button type="submit" [disabled]="loginForm.invalid">Login</button>
+            <div class="register-forgot">
+                <div class="register-link">
+                    No account yet? <a [routerLink]="['/sign-up']" routerLinkActive="active">Register</a>
+                </div>
+                <span>|</span>
+                <div class="forgot-password-link">
+                    <a [routerLink]="['/forgot-password']" routerLinkActive="active">Forgot Password?</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container" [ngClass]="!mode ? 'dark':'light'">
+    <div class="students">
+        <div class="header">
+            <h1>
+                <i class="fa-solid fa-users"></i>
+                STUDENTS
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find Student.." name="search" [(ngModel)]="searchStudent">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="students-count" >{{ studentCount }} students</span>
+            <div class="right">
+                <a class="add-student" #studentBtn>
+                    <button mat-raised-button color="primary" (click)="openAddStudentDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD STUDENT</span>
+                    </button>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="fullName"><div>Full Name</div></td>
+                        <td class="yearLevel"><div>Year Level</div></td>
+                        <td class="program"><div>Program</div></td>
+                        <td class="department"><div>Department</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let student of students | filter:searchStudent">
+                        <td class="student-id"><div>{{ student.id }}</div></td>
+                        <td class="student-fullname"><div>{{ student.fullName }}</div></td>
+                        <td class="student-yearLevel"><div>{{ student.yearLevel }}</div></td>
+                        <td class="student-program"><div>{{ student.program }}</div></td>
+                        <td class="student-department"><div>{{ student.department }}</div></td>
+                        <td class="student-edit">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-pen-to-square" (click)="openUpdateNoteDialog(student)"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="student-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="confirmationDialog(student.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

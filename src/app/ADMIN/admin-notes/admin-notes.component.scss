@@ -1,0 +1,387 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    margin: 0 .25rem .5rem #e6edef;
+    height: 100vh;
+    overflow: hidden;
+    
+
+    .view-container{
+        min-width: 22rem;
+        max-width: 22rem;
+        background: #1b2319;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .view-header{
+            display: flex;
+            padding: 1.5rem 1.5rem 0 1.2rem;
+
+            i{
+                color: #fbdf00;
+                font-size: 32px;
+                margin-right: .5rem;
+            }
+    
+            h1{
+                color: #fff;
+            }  
+        }
+        
+        .view-content{
+            display: flex;
+            flex-direction: column;
+
+                .view-settings{
+                    display: block;
+                    float: left;
+                    width: 100%;
+                    border-bottom: 1px solid #525c01;
+
+                    .note-count{
+                        padding: 1.5rem;
+                        color: #fff;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        
+                        span{
+                            font-size: 13px;
+                            font-weight: 300;
+                        }
+
+                        .options{
+                            
+
+                            i{
+                                padding: 0 0 0 0.5rem;
+                                cursor: pointer;
+                            }
+    
+                            i:hover{
+                                color: #fadd00;
+                            }
+    
+                            .tooltip{
+                                position: relative;
+                                display: inline-block;
+    
+                                .tooltip-text{
+                                    font-size: 8px;
+                                    visibility: hidden;
+                                    width: 40px;
+                                    background-color: black;
+                                    color: #fff;
+                                    text-align: center;
+                                    border-radius: 6px;
+                                    padding: 5px 0;
+                                    position: absolute;
+                                    z-index: 1;
+                                    top: 150%;
+                                    left: 50%;
+                                    margin-left: -16px;
+                                    overflow: visible;
+                                }
+    
+                                .tooltip-text::after{
+                                    content: "";
+                                    position: absolute;
+                                    bottom: 100%;
+                                    left: 50%;
+                                    margin-left: -5px;
+                                    border-width: 5px;
+                                    border-style: solid;
+                                    border-color: transparent transparent black transparent;
+                                }
+                            }
+    
+                            .tooltip:hover .tooltip-text{
+                                visibility: visible;
+                            }
+                        }
+                    }          
+                }
+
+                .note-empty{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    height: 80vh;
+
+                    i{
+                        font-size: 8rem;
+                        color: #6a7466;
+                        margin-bottom: 1rem;
+                    }
+
+                    span{
+                        color: #fff;
+                        font-size: 18px;
+                        text-align: center;
+                        padding: 1rem;
+
+                        b{
+                            color: #fadd00;
+                        }
+                    }
+                }
+
+                ul{
+
+                    li{
+                        list-style: none;
+                        border-bottom: 1px solid #525c01;
+                        padding: 1.5rem;
+                        width: 100%;
+                        height: 120px;
+                        cursor: pointer;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        //border: 2px solid transparent;
+    
+                        .upper-content{
+                            .title{
+                                font-size: 18px;
+                                font-weight: 700;
+                                color: #fff;
+    
+                                span{
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    float: left;
+                                    width: 230px;
+                                }
+        
+                                .icons{
+                                    visibility: hidden;
+                                    float: right;
+         
+                                    .tooltip{
+                                        position: relative;
+                                        display: inline-block;
+    
+                                        .tooltip-text{
+                                            font-size: 8px;
+                                            visibility: hidden;
+                                            width: 40px;
+                                            background-color: black;
+                                            color: #fff;
+                                            text-align: center;
+                                            border-radius: 6px;
+                                            padding: 5px 0;
+                                            position: absolute;
+                                            z-index: 1;
+                                            top: 150%;
+                                            left: 50%;
+                                            margin-left: -20px;
+                                            overflow: visible;
+                                        }
+        
+                                        .tooltip-text::after{
+                                            content: "";
+                                            position: absolute;
+                                            bottom: 100%;
+                                            left: 50%;
+                                            margin-left: -3px;
+                                            border-width: 5px;
+                                            border-style: solid;
+                                            border-color: transparent transparent black transparent;
+                                        }
+                                    }
+        
+                                    .tooltip:hover .tooltip-text{
+                                        visibility: visible;
+                                    }
+                                }
+    
+                                .icons.active{
+                                    visibility: visible;
+                                }
+        
+                                i{
+                                    padding: 0 0 0 .2rem;
+                                }
+        
+                                .bx-trash:hover{
+                                    color: red;
+                                }
+        
+                            }
+        
+                            .description{
+                                font-size: 12x;
+                                font-weight: 300;
+                                color: #e6edef;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                float: left;
+                                
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2; /* number of lines to show */
+                                line-clamp: 2; 
+                                -webkit-box-orient: vertical;
+        
+                                white-space: -moz-pre-wrap; /* Mozilla */
+                                white-space: -hp-pre-wrap; /* HP printers */
+                                white-space: -o-pre-wrap; /* Opera 7 */
+                                white-space: -pre-wrap; /* Opera 4-6 */
+                                white-space: pre-wrap; /* CSS 2.1 */
+                                white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+                                word-wrap: break-word; /* IE */
+                                word-break: break-all;
+                            }
+                        }
+
+                        .lower-content{
+                            display: flex;
+                            align-items: center;
+                            
+                            .date{
+                                font-size: 12px;
+                                font-weight: 300;
+                                color: #848482;
+                            }
+                        }
+                    }
+
+                    li.active{
+                        border: 2px solid #fadd00;
+                    }
+    
+                    li:hover{
+                        background: #525c01;
+                    }       
+                }
+        }
+        
+    }
+
+    .view-container::-webkit-scrollbar{
+        width: 3px;
+    }
+
+    .view-container::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 10px #525c01;
+    }
+
+    .view-container::-webkit-scrollbar-thumb{
+        background: #fadd00;
+    }
+
+    
+
+    .input-container{
+        min-width: 350px;
+        min-height: 350px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: .5rem;
+        margin: 3rem;
+        background: #fff;
+        border-radius: .5rem;
+        padding: 3rem;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+        hr{
+            margin-bottom: 1rem;
+        }
+
+        .form-group{
+
+            input[type = "text"]{
+                width: 100%;
+                padding: 0.5rem 0.3rem;
+                font-size: 3rem;
+                background-color: transparent;
+                outline: none;
+                resize: none;
+                border: none;
+            }
+
+            textarea{
+                width: 100%;
+                height: 500px;
+                padding: 0.5rem 1rem;
+                font-size: 18px;
+                background-color: transparent;
+                outline: none;
+                resize: none;
+                border: none;
+            }
+
+            textarea::-webkit-scrollbar{
+                width: 5px;
+            }
+
+            textarea::-webkit-scrollbar-track{
+                -webkit-box-shadow: inset 0 0 10px #525c01;
+            }
+
+            textarea::-webkit-scrollbar-thumb{
+                background: #fadd00;
+            }
+        }
+
+        .form-header{
+            display: flex;
+            align-items: center;
+
+            .tooltip{
+                position: relative;
+                display: inline-block;
+                background: none;
+                border: none;
+                outline: none;
+
+                i{
+                    font-size: 32px;
+                    cursor: pointer;
+                }
+                i:hover{
+                    color: #50C878;
+                }
+
+                .tooltip-text{
+                    visibility: hidden;
+                    width: 120px;
+                    background-color: black;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 5px 0;
+                    position: absolute;
+                    z-index: 1;
+                    top: 150%;
+                    left: 50%;
+                    margin-left: -60px;
+                }
+
+                .tooltip-text::after{
+                    content: "";
+                    position: absolute;
+                    bottom: 100%;
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent black transparent;
+                }
+            }
+
+            .tooltip:hover .tooltip-text{
+                visibility: visible;
+            }
+        }
+    }
+
+    .input-container:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+}

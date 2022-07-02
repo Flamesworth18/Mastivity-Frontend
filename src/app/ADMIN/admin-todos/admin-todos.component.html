@@ -1,0 +1,79 @@
+<div class="container">
+
+    <div class="view-container">
+        <div class="view-header">
+            <i class="fa-solid fa-list-check"></i>
+            <h1>To Dos</h1>
+        </div>
+        <div class="view-content"  *ngIf="!(loader._isLoading | async)">
+            <div class="view-settings">
+                <div class="settings-content">
+                    <span> {{ todosCount }} to dos</span>
+                    <div class="options">
+                        <div class="tooltip">
+                            <i class='bx bx-list-plus' (click)="createTodo()"></i>
+                            <span class="tooltip-text">Add</span>
+                        </div>
+                        <div class="tooltip">
+                            <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            <span class="tooltip-text">Sort</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="todoIsEmpty" class="view-empty">
+                <i class='bx bx-list-plus' ></i>
+                <span>Click the <b>add todo icon</b> button in the header options.</span>
+            </div>
+            <ul *ngIf="!todoIsEmpty">
+                <li *ngFor="let todo of todos" (click)="showTodoIcons(todo.id)" [ngClass]="todo.id === activeTodo?'todoIsActive':''" (click)="populateTodoForm(todo)">
+                    <div class="list-content">
+                        <div class="title-container">
+                            <span>{{ todo.title }}</span>
+                            <div class="icons" [ngClass]="todo.id === activeTodo? 'todoIsActive':'' ">
+                                <div class="tooltip">
+                                    <i (click)="onRemoveTodo(todo.id)" class='bx bx-trash' ></i>
+                                    <span class="tooltip-text">Remove</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="first-task">{{ todo.tasks[0].title }}</div>
+                    </div>
+                    <div class="status-container">
+                        <span class="task-count">{{ todo.taskCompleted }}/{{ todo.tasks.length }} tasks completed</span>
+                        <div class="status">{{ statusMap.get(todo.statusId) }}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <form *ngIf="(!todoIsEmpty || addEdit || addEditService) && !(loader._isLoading | async)" #form="ngForm" (ngSubmit)="onTodoSubmit()">
+
+            <div class="form-group form-header">
+                <input type="text" name="title" class="task-title" [(ngModel)]="todo.title">
+                <button class="tooltip" type="submit">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span class="tooltip-text">Save</span>
+                </button>
+            </div>
+
+            <hr>
+            <div class="form-group form-content">
+                <div class="add-task" (click)="addTask()">
+                    <i class='bx bxs-message-square-add'></i>
+                    <span>ADD TASK</span>
+                </div>
+                <div class="task-wrapper">
+                    <div class="task-container" *ngFor="let task of todo.tasks" (click)="focusTask(task.id)" [ngClass]="task.id === activeTask? 'taskIsActive':'' ">
+                        <input type="checkbox" class="checkbox" value="{{ task.isCompleted }}" [(ngModel)]="task.isCompleted" [ngModelOptions]="{standalone: true}">
+                        <input type="text" class="checkbox-label" [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}">
+                        <i class="fa-solid fa-square-minus" [ngClass]="task.id === activeTask? 'taskIsActive':'' " (click)="onRemoveTask(task.id)"></i>
+                    </div>  
+                </div>  
+            </div>
+
+        </form>
+    </div>
+</div>

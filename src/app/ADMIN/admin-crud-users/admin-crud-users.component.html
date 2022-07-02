@@ -1,0 +1,67 @@
+<div class="container" [ngClass]="!mode ? 'dark':'light'">
+    <div class="users">
+        <div class="header">
+            <h1>
+                <i class="fa-solid fa-user-group"></i>
+                USERS
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find User.." name="search" [(ngModel)]="searchUser">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="users-count">{{ userCount }} users</span>
+            <div class="right">
+                <a class="add-user" #addBtn>
+                    <button mat-raised-button color="primary" (click)="openAddUserDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD USER</span>
+                    </button>
+                </a>
+                <i class='bx bx-sort-down'></i>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="fname"><div>First Name</div></td>
+                        <td class="lname"><div>Last Name</div></td>
+                        <td class="username"><div>Username</div></td>
+                        <td class="role"><div>Role</div></td>
+                        <td class="verified"><div>Verified</div></td>
+                        <td class="created"><div>Date Created</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let user of users | filter:searchUser">
+                        <td class="user-id"><div>{{ user.id }}</div></td>
+                        <td class="user-fname"><div>{{ user.firstName }}</div></td>
+                        <td class="user-lname"><div>{{ user.lastName }}</div></td>
+                        <td class="user-username"><div>{{ user.username }}</div></td>
+                        <td class="user-role"><div>{{ user.role }}</div></td>
+                        <td class="user-verified"><div>{{ user.isVerify ? 'Yes':'No' }}</div></td>
+                        <td class="user-created"><div>{{ user.userCreated }}</div></td>
+                        <td class="user-edit">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-pen-to-square" (click)="openUpdateUserDialog(user)"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="user-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="confirmationDialog(user.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

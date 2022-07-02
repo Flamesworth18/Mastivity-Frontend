@@ -1,0 +1,76 @@
+<div class="container" [ngClass]="!mode ? 'dark':'light'">
+    <div class="notes">
+        <div class="header">
+            <h1>
+                <i class='bx bx-notepad' ></i>
+                NOTES
+            </h1>
+            <form class="search-bar" tabindex="0">
+                <input type="text" placeholder="Find Note.." name="search" [(ngModel)]="searchNote">
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        <div class="settings" *ngIf="!(loader._isLoading | async)">
+            <span class="notes-count" >{{notes.length}} notes</span>
+            <div class="right">
+                <a class="add-note" #addNotes>
+                    <button mat-raised-button color="primary" (click)="openAddNoteDialog()">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>ADD NOTE</span>
+                    </button>
+                </a>
+                <div class="drop-wrapper">
+                    <i class='bx bx-sort-down' (click)="openSortChoices()"></i>
+                    <div class="drop-menu dropleft" id="dropleft" [ngClass]="showSortDropdown? 'active':''">
+                      <a (click)="sortBy('title')">Title</a>
+                      <a (click)="sortBy('author')">Author</a>
+                      <a (click)="sortBy('status')">Status</a>
+                      <a (click)="sortBy('Date Created')">Date Created</a>
+                      <a (click)="sortBy('Date Updated')">Date Updated</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="id"><div>Id</div></td>
+                        <td class="name"><div>Title</div></td>
+                        <td class="desc"><div>Description</div></td>
+                        <td class="author"><div>Author</div></td>
+                        <td class="status"><div>Status</div></td>
+                        <td class="created"><div>Date Created</div></td>
+                        <td class="updated"><div>Date Updated</div></td>
+                        <td class="edit"><div></div></td>
+                        <td class="remove"><div></div></td>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!(loader._isLoading | async)">
+                    <tr class="table-body" *ngFor="let note of notes | filter:searchNote | orderBy: order: isDescOrder">
+                        <td class="note-id"><div>{{ note.id }}</div></td>
+                        <td class="note-name"><div>{{ note.title }}</div></td>
+                        <td class="note-desc"><div>{{ note.description }}</div></td>
+                        <td class="note-author"><div>{{ note.author }}</div></td>
+                        <td class="note-status"><div>{{ note.isArchived === true ? 'Archived':'Active' }}</div></td>
+                        <td class="note-created"><div>{{ note.dateCreated }}</div></td>
+                        <td class="note-updated"><div>{{ note.dateUpdated }}</div></td>
+                        <td class="note-edit">
+                            <div class="tooltip" (click)="openUpdateNoteDialog(note)">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span class="tooltip-text">Edit</span>
+                            </div>
+                        </td>
+                        <td class="note-remove">
+                            <div class="tooltip">
+                                <i class="fa-solid fa-trash-can" (click)="removeNote(note.id)"></i>
+                                <span class="tooltip-text">Remove</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

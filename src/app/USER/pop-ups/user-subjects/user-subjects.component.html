@@ -1,0 +1,107 @@
+<!--ADD-->
+<div class="container" *ngIf="data.add">
+    <div class="table-container">
+        <table class="select">
+            <thead>
+                <tr>
+                    <td class="header-name">Select Subject
+                        <button mat-raised-button color="primary" disabled style="visibility: hidden; ">
+                            <i class="fa-solid fa-square-plus"></i>
+                            <span>ADD SUBJECTS</span>
+                        </button>
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subject of selectSubjects">
+                    <td class="name">{{ subject.subjectName }}</td>
+                    <td class="tooltip">
+                        <i class="fa-solid fa-square-plus" (click)="addUserSubject(subject)"></i>
+                        <span class="tooltip-text">Add</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="table-container">
+        <table class="show">
+            <thead>
+                <tr>
+                    <td class="header-name">Added Subject 
+                        <button mat-raised-button color="primary" (click)="addEditToUserSubjects()">
+                            <i class="fa-solid fa-square-plus"></i>
+                            <span>ADD SUBJECTS</span>
+                        </button>
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subject of userSubjects">
+                    <td class="name">{{ subject.subjectName }}</td>
+                    <td class="tooltip">
+                        <i class="fa-solid fa-square-minus" (click)="removeUserSubject(subject)"></i>
+                        <span class="tooltip-text">Remove</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!--UPDATE-->
+<div class="container" *ngIf="!data.add">
+    <div class="table-container">
+        <table class="select">
+            <thead>
+                <tr>
+                    <td class="header-name">Select Subject
+                        <button mat-raised-button color="primary" disabled style="visibility: hidden; ">
+                            <i class="fa-solid fa-square-plus"></i>
+                            <span>ADD SUBJECTS</span>
+                        </button>
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subject of selectSubjects">
+                    <td class="name">{{ subject.subjectName }}</td>
+                    <td class="tooltip">
+                        <i class="fa-solid fa-square-plus" (click)="addUserSubject(subject)"></i>
+                        <span class="tooltip-text">Add</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="table-container">
+        <table class="show">
+            <thead>
+                <tr>
+                    <td class="header-name">Added Subject 
+                        <button mat-raised-button color="primary" (click)="addEditToUserSubjects()">
+                            <i class="fa-solid fa-square-plus"></i>
+                            <span>UPDATE SUBJECTS</span>
+                        </button>
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subject of userSubjects">
+                    <td class="name">{{ subject.subjectName }}</td>
+                    <td class="tooltip">
+                        <i class="fa-solid fa-square-minus" (click)="removeUserSubject(subject)"></i>
+                        <span class="tooltip-text">Remove</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

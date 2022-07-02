@@ -1,0 +1,57 @@
+<app-topnav></app-topnav>
+<div class="container">
+    <div class="box-1" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px">
+        <mat-card fxFlex="65" class="box-card-1">
+            <div class="note-wrapper">
+                <span class="title">Notes</span>
+                <div class="note-container" *ngIf="!(loader._isLoading | async)">
+                    <div class="notes" *ngFor="let note of notes">
+                        <input type="text" readonly [(ngModel)]="note.title">
+                        <textarea name="note" readonly id="textarea" cols="30" rows="10" placeholder="Description..." [(ngModel)]="note.description"></textarea>
+                    </div>
+                    <div class="notes default">
+                        <div class="icon" (click)="addUserNote()">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <h3>Add Note</h3>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+        <mat-card fxFlex class="box-card-2">
+            <span>Scratch Pad</span>
+            <textarea name="notepad" id="textarea" cols="30" rows="10" placeholder="Write your idea..." ></textarea>
+        </mat-card>
+    </div>
+
+    <div class="box-2" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px">
+        <mat-card fxFlex class="box-card-3">
+            <div class="todos-events" fxLayoutGap="20px" fxLayout.sm="column" fxLayout.xs="column">
+                <div class="todo-wrapper" fxFlex *ngIf="!(loader._isLoading | async)">
+                    <span class="title">Tasks & Events</span>
+                    <div class="todo-container">
+                        <div class="todo" *ngFor="let todo of todos">
+                            <input readonly type="text" class="text" [(ngModel)]="todo.title">
+                            <div class="tasks-container">
+                                <div class="tasks" *ngFor="let task of todo.tasks">
+                                    <input onclick="return false;" type="checkbox" value="{{ task.isCompleted }}" [(ngModel)]="task.isCompleted">
+                                    <input readonly type="text" class="checkbox-label" [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="todo default">
+                            <div class="icon" (click)="addUserTodo()">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                            <h3>Add Todo</h3>
+                        </div>
+                    </div>
+                </div>
+                 <div class="events-container" fxFlex *ngIf="!(loader._isLoading | async)">
+                    <full-calendar [options]="calendar" id="fullcalendar"></full-calendar>
+                 </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>
