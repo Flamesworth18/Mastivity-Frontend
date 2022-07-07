@@ -116,8 +116,6 @@ export class AuthService {
 
           localStorage.setItem(this.token_name, response);
 
-          console.log(this.userToken)
-
           this.getCounter();
 
           if(this.userToken.role === 'User'){
